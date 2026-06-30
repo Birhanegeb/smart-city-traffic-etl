@@ -1,0 +1,40 @@
+[2026-06-26T22:09:48.255+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.fetch_bremen manual__2026-06-26T18:42:41.916354+00:00 [queued]>
+[2026-06-26T22:09:48.271+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.fetch_bremen manual__2026-06-26T18:42:41.916354+00:00 [queued]>
+[2026-06-26T22:09:48.271+0000] {taskinstance.py:2170} INFO - Starting attempt 4 of 4
+[2026-06-26T22:09:48.294+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_bremen> on 2026-06-26 18:42:41.916354+00:00
+[2026-06-26T22:09:48.308+0000] {standard_task_runner.py:60} INFO - Started process 611 to run task
+[2026-06-26T22:09:48.315+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'fetch_bremen', 'manual__2026-06-26T18:42:41.916354+00:00', '--job-id', '72', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmpctr4_vyj']
+[2026-06-26T22:09:48.319+0000] {standard_task_runner.py:88} INFO - Job 72: Subtask fetch_bremen
+[2026-06-26T22:09:48.426+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.fetch_bremen manual__2026-06-26T18:42:41.916354+00:00 [running]> on host 2a877a0edbb9
+[2026-06-26T22:09:48.829+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='thesis' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_bremen' AIRFLOW_CTX_EXECUTION_DATE='2026-06-26T18:42:41.916354+00:00' AIRFLOW_CTX_TRY_NUMBER='4' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-26T18:42:41.916354+00:00'
+[2026-06-26T22:09:53.193+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.03,8.72): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.03%2C8.72&unit=KMPH
+[2026-06-26T22:09:53.654+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.063333,8.72): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.063333%2C8.72&unit=KMPH
+[2026-06-26T22:09:54.192+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.096667,8.72): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.096667%2C8.72&unit=KMPH
+[2026-06-26T22:09:54.712+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.13,8.72): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.13%2C8.72&unit=KMPH
+[2026-06-26T22:09:55.041+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.03,8.796667): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.03%2C8.796667&unit=KMPH
+[2026-06-26T22:09:55.419+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.063333,8.796667): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.063333%2C8.796667&unit=KMPH
+[2026-06-26T22:09:55.817+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.096667,8.796667): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.096667%2C8.796667&unit=KMPH
+[2026-06-26T22:09:56.262+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.13,8.796667): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.13%2C8.796667&unit=KMPH
+[2026-06-26T22:09:56.517+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.03,8.873333): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.03%2C8.873333&unit=KMPH
+[2026-06-26T22:09:56.885+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.063333,8.873333): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.063333%2C8.873333&unit=KMPH
+[2026-06-26T22:09:57.259+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.096667,8.873333): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.096667%2C8.873333&unit=KMPH
+[2026-06-26T22:09:57.818+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.13,8.873333): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.13%2C8.873333&unit=KMPH
+[2026-06-26T22:09:58.164+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.03,8.95): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.03%2C8.95&unit=KMPH
+[2026-06-26T22:09:58.484+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.063333,8.95): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.063333%2C8.95&unit=KMPH
+[2026-06-26T22:09:58.841+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.096667,8.95): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.096667%2C8.95&unit=KMPH
+[2026-06-26T22:09:59.206+0000] {ingestion_dag.py:75} WARNING - Failed bremen (53.13,8.95): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=53.13%2C8.95&unit=KMPH
+[2026-06-26T22:09:59.208+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/ingestion_dag.py", line 78, in fetch_and_extract
+    raise RuntimeError("All grid points failed")
+RuntimeError: All grid points failed
+[2026-06-26T22:09:59.225+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=ingestion_dag, task_id=fetch_bremen, execution_date=20260626T184241, start_date=20260626T220948, end_date=20260626T220959
+[2026-06-26T22:09:59.251+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 72 for task fetch_bremen (All grid points failed; 611)
+[2026-06-26T22:09:59.283+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-06-26T22:09:59.315+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

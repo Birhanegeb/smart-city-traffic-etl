@@ -1,0 +1,817 @@
+[2026-06-27T13:14:34.721+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: spark_transform_dag.spark_job scheduled__2026-06-27T12:00:00+00:00 [queued]>
+[2026-06-27T13:14:34.734+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: spark_transform_dag.spark_job scheduled__2026-06-27T12:00:00+00:00 [queued]>
+[2026-06-27T13:14:34.734+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2026-06-27T13:14:34.756+0000] {taskinstance.py:2191} INFO - Executing <Task(SparkSubmitOperator): spark_job> on 2026-06-27 12:00:00+00:00
+[2026-06-27T13:14:34.765+0000] {standard_task_runner.py:60} INFO - Started process 2040 to run task
+[2026-06-27T13:14:34.770+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'spark_transform_dag', 'spark_job', 'scheduled__2026-06-27T12:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/spark_transform_dag.py', '--cfg-path', '/tmp/tmphc1cpthb']
+[2026-06-27T13:14:34.773+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask spark_job
+[2026-06-27T13:14:34.842+0000] {task_command.py:423} INFO - Running <TaskInstance: spark_transform_dag.spark_job scheduled__2026-06-27T12:00:00+00:00 [running]> on host b18662f3c6bd
+[2026-06-27T13:14:34.944+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='spark_transform_dag' AIRFLOW_CTX_TASK_ID='spark_job' AIRFLOW_CTX_EXECUTION_DATE='2026-06-27T12:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-27T12:00:00+00:00'
+[2026-06-27T13:14:34.964+0000] {base.py:83} INFO - Using connection ID 'spark_default' for task execution.
+[2026-06-27T13:14:34.965+0000] {spark_submit.py:339} INFO - Spark-Submit cmd: spark-submit --master spark://spark-master:7077 --conf spark.master=spark://spark-master:7077 --conf spark.submit.deployMode=client --name arrow-spark --verbose /opt/spark-apps/silver_to_gold.py
+[2026-06-27T13:14:36.359+0000] {spark_submit.py:490} INFO - Using properties file: null
+[2026-06-27T13:14:36.523+0000] {spark_submit.py:490} INFO - Parsed arguments:
+[2026-06-27T13:14:36.523+0000] {spark_submit.py:490} INFO - master                  spark://spark-master:7077
+[2026-06-27T13:14:36.523+0000] {spark_submit.py:490} INFO - remote                  null
+[2026-06-27T13:14:36.523+0000] {spark_submit.py:490} INFO - deployMode              client
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - executorMemory          null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - executorCores           null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - totalExecutorCores      null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - propertiesFile          null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - driverMemory            null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - driverCores             null
+[2026-06-27T13:14:36.524+0000] {spark_submit.py:490} INFO - driverExtraClassPath    null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - driverExtraLibraryPath  null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - driverExtraJavaOptions  null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - supervise               false
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - queue                   null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - numExecutors            null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - files                   null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - pyFiles                 null
+[2026-06-27T13:14:36.525+0000] {spark_submit.py:490} INFO - archives                null
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - mainClass               null
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - primaryResource         file:/opt/spark-apps/silver_to_gold.py
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - name                    arrow-spark
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - childArgs               []
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - jars                    null
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - packages                null
+[2026-06-27T13:14:36.526+0000] {spark_submit.py:490} INFO - packagesExclusions      null
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - repositories            null
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - verbose                 true
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - Spark properties used, including those specified through
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - --conf and those from the properties file null:
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - (spark.master,spark://spark-master:7077)
+[2026-06-27T13:14:36.527+0000] {spark_submit.py:490} INFO - (spark.submit.deployMode,client)
+[2026-06-27T13:14:36.528+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:36.528+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:36.714+0000] {spark_submit.py:490} INFO - Main class:
+[2026-06-27T13:14:36.714+0000] {spark_submit.py:490} INFO - org.apache.spark.deploy.PythonRunner
+[2026-06-27T13:14:36.714+0000] {spark_submit.py:490} INFO - Arguments:
+[2026-06-27T13:14:36.714+0000] {spark_submit.py:490} INFO - file:/opt/spark-apps/silver_to_gold.py
+[2026-06-27T13:14:36.714+0000] {spark_submit.py:490} INFO - null
+[2026-06-27T13:14:36.716+0000] {spark_submit.py:490} INFO - Spark config:
+[2026-06-27T13:14:36.716+0000] {spark_submit.py:490} INFO - (spark.app.name,arrow-spark)
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - (spark.app.submitTime,1782566076698)
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - (spark.master,spark://spark-master:7077)
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - (spark.submit.deployMode,client)
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - (spark.submit.pyFiles,)
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - Classpath elements:
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:36.717+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:37.192+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkContext: Running Spark version 3.5.8
+[2026-06-27T13:14:37.193+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkContext: OS info Linux, 6.17.0-23-generic, amd64
+[2026-06-27T13:14:37.193+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkContext: Java version 17.0.19
+[2026-06-27T13:14:37.222+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-06-27T13:14:37.264+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceUtils: ==============================================================
+[2026-06-27T13:14:37.264+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2026-06-27T13:14:37.264+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceUtils: ==============================================================
+[2026-06-27T13:14:37.264+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkContext: Submitted application: silver_to_gold
+[2026-06-27T13:14:37.275+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2026-06-27T13:14:37.279+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceProfile: Limiting resource is cpu
+[2026-06-27T13:14:37.279+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2026-06-27T13:14:37.305+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SecurityManager: Changing view acls to: ***
+[2026-06-27T13:14:37.305+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SecurityManager: Changing modify acls to: ***
+[2026-06-27T13:14:37.305+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SecurityManager: Changing view acls groups to:
+[2026-06-27T13:14:37.305+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SecurityManager: Changing modify acls groups to:
+[2026-06-27T13:14:37.306+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+[2026-06-27T13:14:37.433+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO Utils: Successfully started service 'sparkDriver' on port 42239.
+[2026-06-27T13:14:37.448+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkEnv: Registering MapOutputTracker
+[2026-06-27T13:14:37.468+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkEnv: Registering BlockManagerMaster
+[2026-06-27T13:14:37.478+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2026-06-27T13:14:37.479+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2026-06-27T13:14:37.481+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2026-06-27T13:14:37.493+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-480f214a-4a9b-486b-be60-e839f22da514
+[2026-06-27T13:14:37.501+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2026-06-27T13:14:37.510+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkEnv: Registering OutputCommitCoordinator
+[2026-06-27T13:14:37.577+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2026-06-27T13:14:37.605+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2026-06-27T13:14:37.624+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO SparkContext: Added JAR /opt/spark/drivers/postgresql-42.7.11.jar at spark://b18662f3c6bd:42239/jars/postgresql-42.7.11.jar with timestamp 1782566077186
+[2026-06-27T13:14:37.704+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+[2026-06-27T13:14:37.765+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO TransportClientFactory: Successfully created connection to spark-master/172.19.0.3:7077 after 32 ms (0 ms spent in bootstraps)
+[2026-06-27T13:14:37.838+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260627131437-0006
+[2026-06-27T13:14:37.840+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260627131437-0006/0 on worker-20260627123732-172.19.0.6-33673 (172.19.0.6:33673) with 12 core(s)
+[2026-06-27T13:14:37.843+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO StandaloneSchedulerBackend: Granted executor ID app-20260627131437-0006/0 on hostPort 172.19.0.6:33673 with 12 core(s), 1024.0 MiB RAM
+[2026-06-27T13:14:37.856+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46625.
+[2026-06-27T13:14:37.857+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO NettyBlockTransferService: Server created on b18662f3c6bd:46625
+[2026-06-27T13:14:37.860+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2026-06-27T13:14:37.872+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, b18662f3c6bd, 46625, None)
+[2026-06-27T13:14:37.880+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManagerMasterEndpoint: Registering block manager b18662f3c6bd:46625 with 434.4 MiB RAM, BlockManagerId(driver, b18662f3c6bd, 46625, None)
+[2026-06-27T13:14:37.885+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, b18662f3c6bd, 46625, None)
+[2026-06-27T13:14:37.888+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, b18662f3c6bd, 46625, None)
+[2026-06-27T13:14:37.896+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:37 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20260627131437-0006/0 is now RUNNING
+[2026-06-27T13:14:38.105+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:38 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+[2026-06-27T13:14:38.357+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:38 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2026-06-27T13:14:38.362+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:38 INFO SharedState: Warehouse path is 'file:/opt/***/spark-warehouse'.
+[2026-06-27T13:14:39.070+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO HadoopFSUtils: Listing leaf files and directories in parallel under 39 paths. The first several paths are: file:/opt/data/silver/traffic_segments/segments_berlin_20260626T220000.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260626T221500.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260626T222830.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260626T223000.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260626T224500.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260627T080000.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260627T081500.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260627T081605.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260627T083000.parquet, file:/opt/data/silver/traffic_segments/segments_berlin_20260627T084500.parquet.
+[2026-06-27T13:14:39.408+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+[2026-06-27T13:14:39.428+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Got job 0 (parquet at NativeMethodAccessorImpl.java:0) with 39 output partitions
+[2026-06-27T13:14:39.429+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Final stage: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0)
+[2026-06-27T13:14:39.430+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Parents of final stage: List()
+[2026-06-27T13:14:39.433+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Missing parents: List()
+[2026-06-27T13:14:39.441+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+[2026-06-27T13:14:39.543+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 102.8 KiB, free 434.3 MiB)
+[2026-06-27T13:14:39.579+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 37.1 KiB, free 434.3 MiB)
+[2026-06-27T13:14:39.583+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on b18662f3c6bd:46625 (size: 37.1 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:39.588+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1611
+[2026-06-27T13:14:39.614+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO DAGScheduler: Submitting 39 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14))
+[2026-06-27T13:14:39.616+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:39 INFO TaskSchedulerImpl: Adding task set 0.0 with 39 tasks resource profile 0
+[2026-06-27T13:14:40.441+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.19.0.6:35158) with ID 0,  ResourceProfileId 0
+[2026-06-27T13:14:40.494+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO BlockManagerMasterEndpoint: Registering block manager 172.19.0.6:38813 with 434.4 MiB RAM, BlockManagerId(0, 172.19.0.6, 38813, None)
+[2026-06-27T13:14:40.687+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.692+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1) (172.19.0.6, executor 0, partition 1, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.693+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 2.0 in stage 0.0 (TID 2) (172.19.0.6, executor 0, partition 2, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.694+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 3.0 in stage 0.0 (TID 3) (172.19.0.6, executor 0, partition 3, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.695+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 4.0 in stage 0.0 (TID 4) (172.19.0.6, executor 0, partition 4, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.696+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 5.0 in stage 0.0 (TID 5) (172.19.0.6, executor 0, partition 5, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.697+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 6.0 in stage 0.0 (TID 6) (172.19.0.6, executor 0, partition 6, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.698+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 7.0 in stage 0.0 (TID 7) (172.19.0.6, executor 0, partition 7, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.701+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 8.0 in stage 0.0 (TID 8) (172.19.0.6, executor 0, partition 8, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.702+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 9.0 in stage 0.0 (TID 9) (172.19.0.6, executor 0, partition 9, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.705+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 10.0 in stage 0.0 (TID 10) (172.19.0.6, executor 0, partition 10, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:40.707+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:40 INFO TaskSetManager: Starting task 11.0 in stage 0.0 (TID 11) (172.19.0.6, executor 0, partition 11, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.173+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.19.0.6:38813 (size: 37.1 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:41.612+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 12.0 in stage 0.0 (TID 12) (172.19.0.6, executor 0, partition 12, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.615+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 13.0 in stage 0.0 (TID 13) (172.19.0.6, executor 0, partition 13, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.617+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 14.0 in stage 0.0 (TID 14) (172.19.0.6, executor 0, partition 14, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.621+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 15.0 in stage 0.0 (TID 15) (172.19.0.6, executor 0, partition 15, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.623+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 16.0 in stage 0.0 (TID 16) (172.19.0.6, executor 0, partition 16, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.626+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 932 ms on 172.19.0.6 (executor 0) (1/39)
+[2026-06-27T13:14:41.630+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 7.0 in stage 0.0 (TID 7) in 933 ms on 172.19.0.6 (executor 0) (2/39)
+[2026-06-27T13:14:41.631+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 2.0 in stage 0.0 (TID 2) in 939 ms on 172.19.0.6 (executor 0) (3/39)
+[2026-06-27T13:14:41.632+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 8.0 in stage 0.0 (TID 8) in 932 ms on 172.19.0.6 (executor 0) (4/39)
+[2026-06-27T13:14:41.632+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 10.0 in stage 0.0 (TID 10) in 929 ms on 172.19.0.6 (executor 0) (5/39)
+[2026-06-27T13:14:41.633+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 17.0 in stage 0.0 (TID 17) (172.19.0.6, executor 0, partition 17, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.636+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 18.0 in stage 0.0 (TID 18) (172.19.0.6, executor 0, partition 18, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.638+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 19.0 in stage 0.0 (TID 19) (172.19.0.6, executor 0, partition 19, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.638+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 4.0 in stage 0.0 (TID 4) in 944 ms on 172.19.0.6 (executor 0) (6/39)
+[2026-06-27T13:14:41.639+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 11.0 in stage 0.0 (TID 11) in 934 ms on 172.19.0.6 (executor 0) (7/39)
+[2026-06-27T13:14:41.643+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 20.0 in stage 0.0 (TID 20) (172.19.0.6, executor 0, partition 20, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.647+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 21.0 in stage 0.0 (TID 21) (172.19.0.6, executor 0, partition 21, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.653+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 22.0 in stage 0.0 (TID 22) (172.19.0.6, executor 0, partition 22, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.654+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 9.0 in stage 0.0 (TID 9) in 953 ms on 172.19.0.6 (executor 0) (8/39)
+[2026-06-27T13:14:41.655+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 988 ms on 172.19.0.6 (executor 0) (9/39)
+[2026-06-27T13:14:41.656+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 5.0 in stage 0.0 (TID 5) in 961 ms on 172.19.0.6 (executor 0) (10/39)
+[2026-06-27T13:14:41.659+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 23.0 in stage 0.0 (TID 23) (172.19.0.6, executor 0, partition 23, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.661+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 3.0 in stage 0.0 (TID 3) in 967 ms on 172.19.0.6 (executor 0) (11/39)
+[2026-06-27T13:14:41.664+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 6.0 in stage 0.0 (TID 6) in 965 ms on 172.19.0.6 (executor 0) (12/39)
+[2026-06-27T13:14:41.673+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 24.0 in stage 0.0 (TID 24) (172.19.0.6, executor 0, partition 24, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.674+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 16.0 in stage 0.0 (TID 16) in 51 ms on 172.19.0.6 (executor 0) (13/39)
+[2026-06-27T13:14:41.675+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 25.0 in stage 0.0 (TID 25) (172.19.0.6, executor 0, partition 25, PROCESS_LOCAL, 9379 bytes)
+[2026-06-27T13:14:41.677+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 26.0 in stage 0.0 (TID 26) (172.19.0.6, executor 0, partition 26, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.679+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 12.0 in stage 0.0 (TID 12) in 67 ms on 172.19.0.6 (executor 0) (14/39)
+[2026-06-27T13:14:41.679+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 15.0 in stage 0.0 (TID 15) in 60 ms on 172.19.0.6 (executor 0) (15/39)
+[2026-06-27T13:14:41.696+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 27.0 in stage 0.0 (TID 27) (172.19.0.6, executor 0, partition 27, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.696+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 19.0 in stage 0.0 (TID 19) in 57 ms on 172.19.0.6 (executor 0) (16/39)
+[2026-06-27T13:14:41.705+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 28.0 in stage 0.0 (TID 28) (172.19.0.6, executor 0, partition 28, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.705+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 29.0 in stage 0.0 (TID 29) (172.19.0.6, executor 0, partition 29, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.710+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 20.0 in stage 0.0 (TID 20) in 69 ms on 172.19.0.6 (executor 0) (17/39)
+[2026-06-27T13:14:41.711+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 14.0 in stage 0.0 (TID 14) in 94 ms on 172.19.0.6 (executor 0) (18/39)
+[2026-06-27T13:14:41.712+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 30.0 in stage 0.0 (TID 30) (172.19.0.6, executor 0, partition 30, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.715+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 31.0 in stage 0.0 (TID 31) (172.19.0.6, executor 0, partition 31, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.716+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 17.0 in stage 0.0 (TID 17) in 82 ms on 172.19.0.6 (executor 0) (19/39)
+[2026-06-27T13:14:41.717+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 23.0 in stage 0.0 (TID 23) in 58 ms on 172.19.0.6 (executor 0) (20/39)
+[2026-06-27T13:14:41.720+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 32.0 in stage 0.0 (TID 32) (172.19.0.6, executor 0, partition 32, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.720+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 33.0 in stage 0.0 (TID 33) (172.19.0.6, executor 0, partition 33, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.721+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 18.0 in stage 0.0 (TID 18) in 86 ms on 172.19.0.6 (executor 0) (21/39)
+[2026-06-27T13:14:41.723+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 34.0 in stage 0.0 (TID 34) (172.19.0.6, executor 0, partition 34, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.724+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 22.0 in stage 0.0 (TID 22) in 75 ms on 172.19.0.6 (executor 0) (22/39)
+[2026-06-27T13:14:41.725+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 13.0 in stage 0.0 (TID 13) in 110 ms on 172.19.0.6 (executor 0) (23/39)
+[2026-06-27T13:14:41.728+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 35.0 in stage 0.0 (TID 35) (172.19.0.6, executor 0, partition 35, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.731+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 36.0 in stage 0.0 (TID 36) (172.19.0.6, executor 0, partition 36, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.734+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 37.0 in stage 0.0 (TID 37) (172.19.0.6, executor 0, partition 37, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.734+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 21.0 in stage 0.0 (TID 21) in 88 ms on 172.19.0.6 (executor 0) (24/39)
+[2026-06-27T13:14:41.735+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 25.0 in stage 0.0 (TID 25) in 59 ms on 172.19.0.6 (executor 0) (25/39)
+[2026-06-27T13:14:41.736+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 38.0 in stage 0.0 (TID 38) (172.19.0.6, executor 0, partition 38, PROCESS_LOCAL, 9382 bytes)
+[2026-06-27T13:14:41.737+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 24.0 in stage 0.0 (TID 24) in 66 ms on 172.19.0.6 (executor 0) (26/39)
+[2026-06-27T13:14:41.737+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 26.0 in stage 0.0 (TID 26) in 61 ms on 172.19.0.6 (executor 0) (27/39)
+[2026-06-27T13:14:41.743+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 27.0 in stage 0.0 (TID 27) in 53 ms on 172.19.0.6 (executor 0) (28/39)
+[2026-06-27T13:14:41.745+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 28.0 in stage 0.0 (TID 28) in 42 ms on 172.19.0.6 (executor 0) (29/39)
+[2026-06-27T13:14:41.746+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 31.0 in stage 0.0 (TID 31) in 32 ms on 172.19.0.6 (executor 0) (30/39)
+[2026-06-27T13:14:41.751+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 29.0 in stage 0.0 (TID 29) in 46 ms on 172.19.0.6 (executor 0) (31/39)
+[2026-06-27T13:14:41.753+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 30.0 in stage 0.0 (TID 30) in 42 ms on 172.19.0.6 (executor 0) (32/39)
+[2026-06-27T13:14:41.757+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 32.0 in stage 0.0 (TID 32) in 38 ms on 172.19.0.6 (executor 0) (33/39)
+[2026-06-27T13:14:41.761+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 33.0 in stage 0.0 (TID 33) in 40 ms on 172.19.0.6 (executor 0) (34/39)
+[2026-06-27T13:14:41.763+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 35.0 in stage 0.0 (TID 35) in 36 ms on 172.19.0.6 (executor 0) (35/39)
+[2026-06-27T13:14:41.766+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 36.0 in stage 0.0 (TID 36) in 37 ms on 172.19.0.6 (executor 0) (36/39)
+[2026-06-27T13:14:41.767+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 37.0 in stage 0.0 (TID 37) in 34 ms on 172.19.0.6 (executor 0) (37/39)
+[2026-06-27T13:14:41.768+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 34.0 in stage 0.0 (TID 34) in 46 ms on 172.19.0.6 (executor 0) (38/39)
+[2026-06-27T13:14:41.774+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Finished task 38.0 in stage 0.0 (TID 38) in 38 ms on 172.19.0.6 (executor 0) (39/39)
+[2026-06-27T13:14:41.774+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool
+[2026-06-27T13:14:41.775+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: ResultStage 0 (parquet at NativeMethodAccessorImpl.java:0) finished in 2.304 s
+[2026-06-27T13:14:41.779+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+[2026-06-27T13:14:41.779+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+[2026-06-27T13:14:41.782+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Job 0 finished: parquet at NativeMethodAccessorImpl.java:0, took 2.373449 s
+[2026-06-27T13:14:41.798+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO InMemoryFileIndex: It took 2738 ms to list leaf files for 39 paths.
+[2026-06-27T13:14:41.924+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+[2026-06-27T13:14:41.925+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Got job 1 (parquet at NativeMethodAccessorImpl.java:0) with 1 output partitions
+[2026-06-27T13:14:41.926+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Final stage: ResultStage 1 (parquet at NativeMethodAccessorImpl.java:0)
+[2026-06-27T13:14:41.926+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Parents of final stage: List()
+[2026-06-27T13:14:41.927+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Missing parents: List()
+[2026-06-27T13:14:41.927+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO BlockManagerInfo: Removed broadcast_0_piece0 on b18662f3c6bd:46625 in memory (size: 37.1 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:41.927+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[3] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+[2026-06-27T13:14:41.945+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 172.19.0.6:38813 in memory (size: 37.1 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:41.948+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 103.5 KiB, free 434.3 MiB)
+[2026-06-27T13:14:41.951+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 37.4 KiB, free 434.3 MiB)
+[2026-06-27T13:14:41.952+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on b18662f3c6bd:46625 (size: 37.4 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:41.953+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1611
+[2026-06-27T13:14:41.954+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[3] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+[2026-06-27T13:14:41.955+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+[2026-06-27T13:14:41.957+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 39) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 9320 bytes)
+[2026-06-27T13:14:41.977+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:41 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 172.19.0.6:38813 (size: 37.4 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:42.317+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 39) in 360 ms on 172.19.0.6 (executor 0) (1/1)
+[2026-06-27T13:14:42.317+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool
+[2026-06-27T13:14:42.318+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO DAGScheduler: ResultStage 1 (parquet at NativeMethodAccessorImpl.java:0) finished in 0.389 s
+[2026-06-27T13:14:42.318+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+[2026-06-27T13:14:42.319+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+[2026-06-27T13:14:42.319+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO DAGScheduler: Job 1 finished: parquet at NativeMethodAccessorImpl.java:0, took 0.394958 s
+[2026-06-27T13:14:42.618+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO BlockManagerInfo: Removed broadcast_1_piece0 on b18662f3c6bd:46625 in memory (size: 37.4 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:42.622+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:42 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 172.19.0.6:38813 in memory (size: 37.4 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:43.298+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileSourceStrategy: Pushed Filters:
+[2026-06-27T13:14:43.298+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileSourceStrategy: Post-Scan Filters:
+[2026-06-27T13:14:43.342+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO SQLHadoopMapReduceCommitProtocol: Using user defined output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileOutputCommitter: File Output Committer Algorithm version is 1
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+[2026-06-27T13:14:43.355+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO SQLHadoopMapReduceCommitProtocol: Using output committer class org.apache.parquet.hadoop.ParquetOutputCommitter
+[2026-06-27T13:14:43.653+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO CodeGenerator: Code generated in 198.920043 ms
+[2026-06-27T13:14:43.661+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 203.0 KiB, free 434.2 MiB)
+[2026-06-27T13:14:43.674+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 35.5 KiB, free 434.2 MiB)
+[2026-06-27T13:14:43.676+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on b18662f3c6bd:46625 (size: 35.5 KiB, free: 434.4 MiB)
+[2026-06-27T13:14:43.677+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO SparkContext: Created broadcast 2 from parquet at NativeMethodAccessorImpl.java:0
+[2026-06-27T13:14:43.711+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO FileSourceScanExec: Planning scan with bin packing, max size: 13670331 bytes, open cost is considered as scanning 4194304 bytes.
+[2026-06-27T13:14:43.752+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO SparkContext: Starting job: parquet at NativeMethodAccessorImpl.java:0
+[2026-06-27T13:14:43.754+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Got job 2 (parquet at NativeMethodAccessorImpl.java:0) with 10 output partitions
+[2026-06-27T13:14:43.754+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Final stage: ResultStage 2 (parquet at NativeMethodAccessorImpl.java:0)
+[2026-06-27T13:14:43.754+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Parents of final stage: List()
+[2026-06-27T13:14:43.755+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Missing parents: List()
+[2026-06-27T13:14:43.755+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[7] at parquet at NativeMethodAccessorImpl.java:0), which has no missing parents
+[2026-06-27T13:14:43.788+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 228.9 KiB, free 433.9 MiB)
+[2026-06-27T13:14:43.794+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 80.5 KiB, free 433.9 MiB)
+[2026-06-27T13:14:43.795+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on b18662f3c6bd:46625 (size: 80.5 KiB, free: 434.3 MiB)
+[2026-06-27T13:14:43.796+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1611
+[2026-06-27T13:14:43.797+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO DAGScheduler: Submitting 10 missing tasks from ResultStage 2 (MapPartitionsRDD[7] at parquet at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
+[2026-06-27T13:14:43.798+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSchedulerImpl: Adding task set 2.0 with 10 tasks resource profile 0
+[2026-06-27T13:14:43.802+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 40) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 10250 bytes)
+[2026-06-27T13:14:43.802+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 41) (172.19.0.6, executor 0, partition 1, PROCESS_LOCAL, 10250 bytes)
+[2026-06-27T13:14:43.803+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 2.0 in stage 2.0 (TID 42) (172.19.0.6, executor 0, partition 2, PROCESS_LOCAL, 10244 bytes)
+[2026-06-27T13:14:43.803+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 3.0 in stage 2.0 (TID 43) (172.19.0.6, executor 0, partition 3, PROCESS_LOCAL, 10238 bytes)
+[2026-06-27T13:14:43.804+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 4.0 in stage 2.0 (TID 44) (172.19.0.6, executor 0, partition 4, PROCESS_LOCAL, 10241 bytes)
+[2026-06-27T13:14:43.804+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 5.0 in stage 2.0 (TID 45) (172.19.0.6, executor 0, partition 5, PROCESS_LOCAL, 10244 bytes)
+[2026-06-27T13:14:43.804+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 6.0 in stage 2.0 (TID 46) (172.19.0.6, executor 0, partition 6, PROCESS_LOCAL, 10238 bytes)
+[2026-06-27T13:14:43.804+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 7.0 in stage 2.0 (TID 47) (172.19.0.6, executor 0, partition 7, PROCESS_LOCAL, 10238 bytes)
+[2026-06-27T13:14:43.805+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 8.0 in stage 2.0 (TID 48) (172.19.0.6, executor 0, partition 8, PROCESS_LOCAL, 10238 bytes)
+[2026-06-27T13:14:43.805+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO TaskSetManager: Starting task 9.0 in stage 2.0 (TID 49) (172.19.0.6, executor 0, partition 9, PROCESS_LOCAL, 10101 bytes)
+[2026-06-27T13:14:43.853+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:43 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 172.19.0.6:38813 (size: 80.5 KiB, free: 434.3 MiB)
+[2026-06-27T13:14:44.401+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 172.19.0.6:38813 (size: 35.5 KiB, free: 434.3 MiB)
+[2026-06-27T13:14:44.594+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 WARN TaskSetManager: Lost task 0.0 in stage 2.0 (TID 40) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_40 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.594+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.595+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.595+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.595+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.596+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.596+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.597+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.597+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.597+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.598+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.598+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.598+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.598+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.599+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.599+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.599+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.600+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.600+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.600+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.601+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.601+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.601+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.602+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.602+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.602+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.602+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.603+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.603+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.603+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.604+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.604+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.604+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.605+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.605+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSetManager: Starting task 0.1 in stage 2.0 (TID 50) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 10250 bytes)
+[2026-06-27T13:14:44.661+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 WARN TaskSetManager: Lost task 0.1 in stage 2.0 (TID 50) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_50 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.662+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.663+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.663+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.664+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.664+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.664+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.664+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.665+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.666+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.666+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.666+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.666+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.667+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.667+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.667+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.667+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.667+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.668+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.668+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.668+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.668+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.669+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.670+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSetManager: Starting task 0.2 in stage 2.0 (TID 51) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 10250 bytes)
+[2026-06-27T13:14:44.709+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 WARN TaskSetManager: Lost task 0.2 in stage 2.0 (TID 51) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_51 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.709+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.710+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.711+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.711+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.711+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.711+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.711+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.712+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.713+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.713+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.713+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.713+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.714+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.715+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSetManager: Starting task 0.3 in stage 2.0 (TID 52) (172.19.0.6, executor 0, partition 0, PROCESS_LOCAL, 10250 bytes)
+[2026-06-27T13:14:44.747+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 WARN TaskSetManager: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.748+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.748+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.748+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.748+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.749+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.750+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.751+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.752+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.752+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.752+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.752+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.752+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 ERROR TaskSetManager: Task 0 in stage 2.0 failed 4 times; aborting job
+[2026-06-27T13:14:44.753+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSchedulerImpl: Cancelling stage 2
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage cancelled: Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.754+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.755+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.756+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.757+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.758+0000] {spark_submit.py:490} INFO - Driver stacktrace:
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO TaskSchedulerImpl: Stage 2 was cancelled
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO DAGScheduler: ResultStage 2 (parquet at NativeMethodAccessorImpl.java:0) failed in 1.000 s due to Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.759+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.760+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.761+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.762+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.764+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.764+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.764+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.764+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.764+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - Driver stacktrace:
+[2026-06-27T13:14:44.765+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 INFO DAGScheduler: Job 2 failed: parquet at NativeMethodAccessorImpl.java:0, took 1.010544 s
+[2026-06-27T13:14:44.767+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 ERROR FileFormatWriter: Aborting job 22f44267-329a-4e33-b4c7-dd906735fbb0.
+[2026-06-27T13:14:44.767+0000] {spark_submit.py:490} INFO - org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.767+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.767+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.768+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.768+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.768+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.768+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.768+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.769+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.770+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.771+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.772+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.772+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.772+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.772+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.772+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - Driver stacktrace:
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2898)
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2834)
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2833)
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+[2026-06-27T13:14:44.773+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2833)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1253)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1253)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at scala.Option.foreach(Option.scala:407)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1253)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3102)
+[2026-06-27T13:14:44.774+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3036)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3025)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:995)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.SparkContext.runJob(SparkContext.scala:2393)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$4(FileFormatWriter.scala:307)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:271)
+[2026-06-27T13:14:44.775+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWriter.scala:304)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:190)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+[2026-06-27T13:14:44.776+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+[2026-06-27T13:14:44.777+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+[2026-06-27T13:14:44.778+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+[2026-06-27T13:14:44.779+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.Gateway.invoke(Gateway.java:282)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:840)
+[2026-06-27T13:14:44.780+0000] {spark_submit.py:490} INFO - Caused by: java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.781+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.782+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.783+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.796+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:44 WARN TaskSetManager: Lost task 9.0 in stage 2.0 (TID 49) (172.19.0.6 executor 0): TaskKilled (Stage cancelled: Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:44.796+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:44.796+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:44.797+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:44.798+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:44.799+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:44.800+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:44.801+0000] {spark_submit.py:490} INFO - Driver stacktrace:)
+[2026-06-27T13:14:44.988+0000] {spark_submit.py:490} INFO - Traceback (most recent call last):
+[2026-06-27T13:14:44.989+0000] {spark_submit.py:490} INFO - File "/opt/spark-apps/silver_to_gold.py", line 32, in <module>
+[2026-06-27T13:14:44.989+0000] {spark_submit.py:490} INFO - gold.write.mode("overwrite").parquet(gold_path)
+[2026-06-27T13:14:44.990+0000] {spark_submit.py:490} INFO - File "/home/***/.local/lib/python3.8/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 1721, in parquet
+[2026-06-27T13:14:44.990+0000] {spark_submit.py:490} INFO - File "/home/***/.local/lib/python3.8/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+[2026-06-27T13:14:44.991+0000] {spark_submit.py:490} INFO - File "/home/***/.local/lib/python3.8/site-packages/pyspark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+[2026-06-27T13:14:44.991+0000] {spark_submit.py:490} INFO - File "/home/***/.local/lib/python3.8/site-packages/pyspark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+[2026-06-27T13:14:45.032+0000] {spark_submit.py:490} INFO - py4j.protocol.Py4JJavaError: An error occurred while calling o54.parquet.
+[2026-06-27T13:14:45.034+0000] {spark_submit.py:490} INFO - : org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 2.0 failed 4 times, most recent failure: Lost task 0.3 in stage 2.0 (TID 52) (172.19.0.6 executor 0): java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:45.034+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:45.035+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:45.035+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:45.036+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:45.036+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:45.037+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:45.037+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:45.038+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:45.038+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:45.039+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:45.039+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:45.039+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:45.040+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:45.040+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:45.041+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:45.041+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:45.041+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:45.042+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:45.042+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:45.043+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:45.043+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:45.043+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:45.044+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:45.044+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:45.044+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:45.045+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:45.045+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:45.045+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:45.046+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:45.046+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:45.047+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:45.047+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:45.047+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:45.048+0000] {spark_submit.py:490} INFO - Driver stacktrace:
+[2026-06-27T13:14:45.049+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2898)
+[2026-06-27T13:14:45.049+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2834)
+[2026-06-27T13:14:45.050+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2833)
+[2026-06-27T13:14:45.051+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+[2026-06-27T13:14:45.052+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+[2026-06-27T13:14:45.052+0000] {spark_submit.py:490} INFO - at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+[2026-06-27T13:14:45.052+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2833)
+[2026-06-27T13:14:45.053+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1253)
+[2026-06-27T13:14:45.053+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1253)
+[2026-06-27T13:14:45.053+0000] {spark_submit.py:490} INFO - at scala.Option.foreach(Option.scala:407)
+[2026-06-27T13:14:45.054+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1253)
+[2026-06-27T13:14:45.054+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:3102)
+[2026-06-27T13:14:45.055+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3036)
+[2026-06-27T13:14:45.055+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:3025)
+[2026-06-27T13:14:45.056+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+[2026-06-27T13:14:45.056+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:995)
+[2026-06-27T13:14:45.056+0000] {spark_submit.py:490} INFO - at org.apache.spark.SparkContext.runJob(SparkContext.scala:2393)
+[2026-06-27T13:14:45.057+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.$anonfun$executeWrite$4(FileFormatWriter.scala:307)
+[2026-06-27T13:14:45.057+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.writeAndCommit(FileFormatWriter.scala:271)
+[2026-06-27T13:14:45.058+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeWrite(FileFormatWriter.scala:304)
+[2026-06-27T13:14:45.058+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.write(FileFormatWriter.scala:190)
+[2026-06-27T13:14:45.059+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:190)
+[2026-06-27T13:14:45.059+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult$lzycompute(commands.scala:113)
+[2026-06-27T13:14:45.060+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.sideEffectResult(commands.scala:111)
+[2026-06-27T13:14:45.060+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.command.DataWritingCommandExec.executeCollect(commands.scala:125)
+[2026-06-27T13:14:45.061+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:107)
+[2026-06-27T13:14:45.061+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:125)
+[2026-06-27T13:14:45.062+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:201)
+[2026-06-27T13:14:45.062+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:108)
+[2026-06-27T13:14:45.063+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2026-06-27T13:14:45.064+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:66)
+[2026-06-27T13:14:45.064+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:107)
+[2026-06-27T13:14:45.065+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+[2026-06-27T13:14:45.065+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:461)
+[2026-06-27T13:14:45.066+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(origin.scala:76)
+[2026-06-27T13:14:45.067+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:461)
+[2026-06-27T13:14:45.067+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:45.068+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+[2026-06-27T13:14:45.071+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+[2026-06-27T13:14:45.071+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:45.072+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:32)
+[2026-06-27T13:14:45.073+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:437)
+[2026-06-27T13:14:45.073+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:98)
+[2026-06-27T13:14:45.074+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:85)
+[2026-06-27T13:14:45.074+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:83)
+[2026-06-27T13:14:45.075+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:142)
+[2026-06-27T13:14:45.075+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:869)
+[2026-06-27T13:14:45.075+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:391)
+[2026-06-27T13:14:45.076+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:364)
+[2026-06-27T13:14:45.076+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:243)
+[2026-06-27T13:14:45.077+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:802)
+[2026-06-27T13:14:45.077+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2026-06-27T13:14:45.078+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+[2026-06-27T13:14:45.078+0000] {spark_submit.py:490} INFO - at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[2026-06-27T13:14:45.079+0000] {spark_submit.py:490} INFO - at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+[2026-06-27T13:14:45.080+0000] {spark_submit.py:490} INFO - at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2026-06-27T13:14:45.080+0000] {spark_submit.py:490} INFO - at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2026-06-27T13:14:45.081+0000] {spark_submit.py:490} INFO - at py4j.Gateway.invoke(Gateway.java:282)
+[2026-06-27T13:14:45.082+0000] {spark_submit.py:490} INFO - at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2026-06-27T13:14:45.082+0000] {spark_submit.py:490} INFO - at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2026-06-27T13:14:45.083+0000] {spark_submit.py:490} INFO - at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2026-06-27T13:14:45.083+0000] {spark_submit.py:490} INFO - at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2026-06-27T13:14:45.084+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:840)
+[2026-06-27T13:14:45.084+0000] {spark_submit.py:490} INFO - Caused by: java.io.IOException: Mkdirs failed to create file:/opt/data/gold/traffic_kpis/_temporary/0/_temporary/attempt_202606271314434157325620451827683_0002_m_000000_52 (exists=false, cwd=file:/opt/spark/work/app-20260627131437-0006/0)
+[2026-06-27T13:14:45.085+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:515)
+[2026-06-27T13:14:45.085+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.ChecksumFileSystem.create(ChecksumFileSystem.java:500)
+[2026-06-27T13:14:45.086+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1195)
+[2026-06-27T13:14:45.086+0000] {spark_submit.py:490} INFO - at org.apache.hadoop.fs.FileSystem.create(FileSystem.java:1175)
+[2026-06-27T13:14:45.087+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.util.HadoopOutputFile.create(HadoopOutputFile.java:74)
+[2026-06-27T13:14:45.087+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:347)
+[2026-06-27T13:14:45.088+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetFileWriter.<init>(ParquetFileWriter.java:314)
+[2026-06-27T13:14:45.089+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:484)
+[2026-06-27T13:14:45.089+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:422)
+[2026-06-27T13:14:45.090+0000] {spark_submit.py:490} INFO - at org.apache.parquet.hadoop.ParquetOutputFormat.getRecordWriter(ParquetOutputFormat.java:411)
+[2026-06-27T13:14:45.090+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetOutputWriter.<init>(ParquetOutputWriter.scala:36)
+[2026-06-27T13:14:45.091+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.parquet.ParquetUtils$$anon$1.newInstance(ParquetUtils.scala:490)
+[2026-06-27T13:14:45.092+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.newOutputWriter(FileFormatDataWriter.scala:161)
+[2026-06-27T13:14:45.092+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.SingleDirectoryDataWriter.<init>(FileFormatDataWriter.scala:146)
+[2026-06-27T13:14:45.093+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.FileFormatWriter$.executeTask(FileFormatWriter.scala:389)
+[2026-06-27T13:14:45.093+0000] {spark_submit.py:490} INFO - at org.apache.spark.sql.execution.datasources.WriteFilesExec.$anonfun$doExecuteWrite$1(WriteFiles.scala:100)
+[2026-06-27T13:14:45.093+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2(RDD.scala:893)
+[2026-06-27T13:14:45.094+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.$anonfun$mapPartitionsInternal$2$adapted(RDD.scala:893)
+[2026-06-27T13:14:45.094+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.MapPartitionsRDD.compute(MapPartitionsRDD.scala:52)
+[2026-06-27T13:14:45.095+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.computeOrReadCheckpoint(RDD.scala:367)
+[2026-06-27T13:14:45.095+0000] {spark_submit.py:490} INFO - at org.apache.spark.rdd.RDD.iterator(RDD.scala:331)
+[2026-06-27T13:14:45.095+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:93)
+[2026-06-27T13:14:45.096+0000] {spark_submit.py:490} INFO - at org.apache.spark.TaskContext.runTaskWithListeners(TaskContext.scala:166)
+[2026-06-27T13:14:45.096+0000] {spark_submit.py:490} INFO - at org.apache.spark.scheduler.Task.run(Task.scala:141)
+[2026-06-27T13:14:45.097+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$4(Executor.scala:621)
+[2026-06-27T13:14:45.097+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally(SparkErrorUtils.scala:64)
+[2026-06-27T13:14:45.098+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.SparkErrorUtils.tryWithSafeFinally$(SparkErrorUtils.scala:61)
+[2026-06-27T13:14:45.098+0000] {spark_submit.py:490} INFO - at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:94)
+[2026-06-27T13:14:45.099+0000] {spark_submit.py:490} INFO - at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:624)
+[2026-06-27T13:14:45.100+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+[2026-06-27T13:14:45.100+0000] {spark_submit.py:490} INFO - at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+[2026-06-27T13:14:45.101+0000] {spark_submit.py:490} INFO - at java.base/java.lang.Thread.run(Thread.java:829)
+[2026-06-27T13:14:45.101+0000] {spark_submit.py:490} INFO - 
+[2026-06-27T13:14:45.149+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO SparkContext: Invoking stop() from shutdown hook
+[2026-06-27T13:14:45.150+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2026-06-27T13:14:45.167+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO SparkUI: Stopped Spark web UI at http://b18662f3c6bd:4040
+[2026-06-27T13:14:45.173+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO StandaloneSchedulerBackend: Shutting down all executors
+[2026-06-27T13:14:45.174+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+[2026-06-27T13:14:45.194+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2026-06-27T13:14:45.217+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO MemoryStore: MemoryStore cleared
+[2026-06-27T13:14:45.217+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO BlockManager: BlockManager stopped
+[2026-06-27T13:14:45.224+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2026-06-27T13:14:45.227+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2026-06-27T13:14:45.255+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO SparkContext: Successfully stopped SparkContext
+[2026-06-27T13:14:45.256+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO ShutdownHookManager: Shutdown hook called
+[2026-06-27T13:14:45.257+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO ShutdownHookManager: Deleting directory /tmp/spark-921c6794-9865-4c17-acf5-0c16e05a1cdf/pyspark-0d381d24-63da-4b12-b54b-e2767be89519
+[2026-06-27T13:14:45.264+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO ShutdownHookManager: Deleting directory /tmp/spark-64ebf964-3328-4d3d-b6b2-f37cb5c62a2e
+[2026-06-27T13:14:45.271+0000] {spark_submit.py:490} INFO - 26/06/27 13:14:45 INFO ShutdownHookManager: Deleting directory /tmp/spark-921c6794-9865-4c17-acf5-0c16e05a1cdf
+[2026-06-27T13:14:45.338+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 157, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 421, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.master=spark://spark-master:7077 --conf spark.submit.deployMode=client --name arrow-spark --verbose /opt/spark-apps/silver_to_gold.py. Error code is: 1.
+[2026-06-27T13:14:45.344+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=spark_transform_dag, task_id=spark_job, execution_date=20260627T120000, start_date=20260627T131434, end_date=20260627T131445
+[2026-06-27T13:14:45.367+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 5 for task spark_job (Cannot execute: spark-submit --master spark://spark-master:7077 --conf spark.master=spark://spark-master:7077 --conf spark.submit.deployMode=client --name arrow-spark --verbose /opt/spark-apps/silver_to_gold.py. Error code is: 1.; 2040)
+[2026-06-27T13:14:45.398+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-06-27T13:14:45.419+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

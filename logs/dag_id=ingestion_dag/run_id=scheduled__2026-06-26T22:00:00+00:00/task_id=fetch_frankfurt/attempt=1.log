@@ -1,0 +1,62 @@
+[2026-06-26T22:15:02.836+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [queued]>
+[2026-06-26T22:15:02.852+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [queued]>
+[2026-06-26T22:15:02.852+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 4
+[2026-06-26T22:15:02.876+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_frankfurt> on 2026-06-26 22:00:00+00:00
+[2026-06-26T22:15:02.888+0000] {standard_task_runner.py:60} INFO - Started process 823 to run task
+[2026-06-26T22:15:02.894+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'fetch_frankfurt', 'scheduled__2026-06-26T22:00:00+00:00', '--job-id', '81', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmpkflmb2d_']
+[2026-06-26T22:15:02.897+0000] {standard_task_runner.py:88} INFO - Job 81: Subtask fetch_frankfurt
+[2026-06-26T22:15:02.993+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [running]> on host 2a877a0edbb9
+[2026-06-26T22:15:03.475+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='thesis' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_frankfurt' AIRFLOW_CTX_EXECUTION_DATE='2026-06-26T22:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-26T22:00:00+00:00'
+[2026-06-26T22:15:03.810+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.55): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.05%2C8.55&unit=KMPH
+[2026-06-26T22:15:04.114+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.0825,8.55): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.0825%2C8.55&unit=KMPH
+[2026-06-26T22:15:04.528+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.115,8.55): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.115%2C8.55&unit=KMPH
+[2026-06-26T22:15:05.040+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.1475,8.55): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.1475%2C8.55&unit=KMPH
+[2026-06-26T22:15:05.444+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.18,8.55): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.18%2C8.55&unit=KMPH
+[2026-06-26T22:15:05.757+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.6125): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.05%2C8.6125&unit=KMPH
+[2026-06-26T22:15:06.166+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.0825,8.6125): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.0825%2C8.6125&unit=KMPH
+[2026-06-26T22:15:06.576+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.115,8.6125): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.115%2C8.6125&unit=KMPH
+[2026-06-26T22:15:07.094+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.1475,8.6125): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.1475%2C8.6125&unit=KMPH
+[2026-06-26T22:15:07.600+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.18,8.6125): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.18%2C8.6125&unit=KMPH
+[2026-06-26T22:15:08.107+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.675): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.05%2C8.675&unit=KMPH
+[2026-06-26T22:15:08.625+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.0825,8.675): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.0825%2C8.675&unit=KMPH
+[2026-06-26T22:15:09.034+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.115,8.675): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.115%2C8.675&unit=KMPH
+[2026-06-26T22:15:09.444+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.1475,8.675): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.1475%2C8.675&unit=KMPH
+[2026-06-26T22:15:09.955+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.18,8.675): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.18%2C8.675&unit=KMPH
+[2026-06-26T22:15:10.365+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.7375): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.05%2C8.7375&unit=KMPH
+[2026-06-26T22:15:10.862+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.0825,8.7375): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.0825%2C8.7375&unit=KMPH
+[2026-06-26T22:15:11.287+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.115,8.7375): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.115%2C8.7375&unit=KMPH
+[2026-06-26T22:15:11.696+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.1475,8.7375): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.1475%2C8.7375&unit=KMPH
+[2026-06-26T22:15:12.109+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.18,8.7375): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.18%2C8.7375&unit=KMPH
+[2026-06-26T22:15:12.522+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.8): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.05%2C8.8&unit=KMPH
+[2026-06-26T22:15:12.933+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.0825,8.8): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.0825%2C8.8&unit=KMPH
+[2026-06-26T22:15:13.438+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.115,8.8): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.115%2C8.8&unit=KMPH
+[2026-06-26T22:15:13.848+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.1475,8.8): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.1475%2C8.8&unit=KMPH
+[2026-06-26T22:15:14.359+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.18,8.8): 401 Client Error: Unauthorized for url: https://api.tomtom.com/traffic/services/4/flowSegmentData/absolute/10/json?key=&point=50.18%2C8.8&unit=KMPH
+[2026-06-26T22:15:14.361+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/ingestion_dag.py", line 78, in fetch_and_extract
+    raise RuntimeError("All grid points failed")
+RuntimeError: All grid points failed
+[2026-06-26T22:15:14.375+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ingestion_dag, task_id=fetch_frankfurt, execution_date=20260626T220000, start_date=20260626T221502, end_date=20260626T221514
+[2026-06-26T22:15:14.397+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 81 for task fetch_frankfurt (All grid points failed; 823)
+[2026-06-26T22:15:14.433+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-06-26T22:15:14.466+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-26T22:28:33.086+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [queued]>
+[2026-06-26T22:28:33.109+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [queued]>
+[2026-06-26T22:28:33.110+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 4
+[2026-06-26T22:28:33.143+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_frankfurt> on 2026-06-26 22:00:00+00:00
+[2026-06-26T22:28:33.159+0000] {standard_task_runner.py:60} INFO - Started process 234 to run task
+[2026-06-26T22:28:33.166+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'fetch_frankfurt', 'scheduled__2026-06-26T22:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmppi_zos7o']
+[2026-06-26T22:28:33.171+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask fetch_frankfurt
+[2026-06-26T22:28:33.310+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.fetch_frankfurt scheduled__2026-06-26T22:00:00+00:00 [running]> on host 2287e6a6e47d
+[2026-06-26T22:28:33.616+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='thesis' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_frankfurt' AIRFLOW_CTX_EXECUTION_DATE='2026-06-26T22:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-26T22:00:00+00:00'
+[2026-06-26T22:28:41.373+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-06-26T22:28:41.388+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ingestion_dag, task_id=fetch_frankfurt, execution_date=20260626T220000, start_date=20260626T222833, end_date=20260626T222841
+[2026-06-26T22:28:41.448+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-26T22:28:41.469+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

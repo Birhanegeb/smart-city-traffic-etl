@@ -1,0 +1,14 @@
+[2026-06-27T16:40:56.757+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: tomtom_api_ingestion.fetch_frankfurt manual__2026-06-27T16:40:56.330381+00:00 [queued]>
+[2026-06-27T16:40:56.764+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: tomtom_api_ingestion.fetch_frankfurt manual__2026-06-27T16:40:56.330381+00:00 [queued]>
+[2026-06-27T16:40:56.765+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2026-06-27T16:40:56.778+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_frankfurt> on 2026-06-27 16:40:56.330381+00:00
+[2026-06-27T16:40:56.783+0000] {standard_task_runner.py:60} INFO - Started process 11386 to run task
+[2026-06-27T16:40:56.786+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'tomtom_api_ingestion', 'fetch_frankfurt', 'manual__2026-06-27T16:40:56.330381+00:00', '--job-id', '38', '--raw', '--subdir', 'DAGS_FOLDER/tomtom_ingestion_api_dag.py', '--cfg-path', '/tmp/tmph9b2zwpi']
+[2026-06-27T16:40:56.788+0000] {standard_task_runner.py:88} INFO - Job 38: Subtask fetch_frankfurt
+[2026-06-27T16:40:56.829+0000] {task_command.py:423} INFO - Running <TaskInstance: tomtom_api_ingestion.fetch_frankfurt manual__2026-06-27T16:40:56.330381+00:00 [running]> on host b18662f3c6bd
+[2026-06-27T16:40:56.897+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='tomtom_api_ingestion' AIRFLOW_CTX_TASK_ID='fetch_frankfurt' AIRFLOW_CTX_EXECUTION_DATE='2026-06-27T16:40:56.330381+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-27T16:40:56.330381+00:00'
+[2026-06-27T16:41:07.047+0000] {tomtom_ingestion_api_dag.py:57} INFO - [frankfurt] success=25, failed=0, file=/opt/data/raw/tomtom_frankfurt_20260627T164056.jsonl
+[2026-06-27T16:41:07.048+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-06-27T16:41:07.062+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=tomtom_api_ingestion, task_id=fetch_frankfurt, execution_date=20260627T164056, start_date=20260627T164056, end_date=20260627T164107
+[2026-06-27T16:41:07.111+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-27T16:41:07.138+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,14 @@
+[2026-06-27T09:19:15.067+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt manual__2026-06-27T09:19:12.847498+00:00 [queued]>
+[2026-06-27T09:19:15.076+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.fetch_frankfurt manual__2026-06-27T09:19:12.847498+00:00 [queued]>
+[2026-06-27T09:19:15.076+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 4
+[2026-06-27T09:19:15.089+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): fetch_frankfurt> on 2026-06-27 09:19:12.847498+00:00
+[2026-06-27T09:19:15.095+0000] {standard_task_runner.py:60} INFO - Started process 226 to run task
+[2026-06-27T09:19:15.098+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'fetch_frankfurt', 'manual__2026-06-27T09:19:12.847498+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmpn3vz5m9_']
+[2026-06-27T09:19:15.100+0000] {standard_task_runner.py:88} INFO - Job 7: Subtask fetch_frankfurt
+[2026-06-27T09:19:15.168+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.fetch_frankfurt manual__2026-06-27T09:19:12.847498+00:00 [running]> on host 36cfabb67335
+[2026-06-27T09:19:15.371+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='thesis' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_frankfurt' AIRFLOW_CTX_EXECUTION_DATE='2026-06-27T09:19:12.847498+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-27T09:19:12.847498+00:00'
+[2026-06-27T09:19:38.964+0000] {ingestion_dag.py:75} WARNING - Failed frankfurt (50.05,8.6125): HTTPSConnectionPool(host='api.tomtom.com', port=443): Read timed out. (read timeout=15)
+[2026-06-27T09:20:12.976+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-06-27T09:20:12.987+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ingestion_dag, task_id=fetch_frankfurt, execution_date=20260627T091912, start_date=20260627T091915, end_date=20260627T092012
+[2026-06-27T09:20:13.033+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-27T09:20:13.046+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
