@@ -29,3 +29,14 @@ CREATE TABLE IF NOT EXISTS traffic_kpis (
     batch_file VARCHAR(512),
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS traffic_points (
+    id BIGSERIAL PRIMARY KEY,
+    city VARCHAR(64),
+    lat FLOAT,
+    lon FLOAT,
+    speed_ratio FLOAT,
+    congestion_level VARCHAR(32),
+    observation_ts TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW()
+);

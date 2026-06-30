@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import (
-    avg, count, sum, when, col, round, lit, to_timestamp
+    avg, count, sum, when, col, round, lit, to_timestamp, max as spark_max
 )
 
 # ---------------------------
@@ -24,7 +24,40 @@ gold_path = "/opt/data/gold/traffic_dashboard"
 df = spark.read.parquet(silver_path)
 
 # ---------------------------
-# AGGREGATE METRICS
+# SCOPE TO LATEST BATCH ONLY
+# Prevents reprocessing/duplicating full history every run
+# ---------------------------
+latest_batch = df.agg(spark_max("batch_ts")).collect()[0][0]
+df = df.filter(col("batch_ts") == latest_batch)
+
+# ---------------------------
+# GOLD POINTS (for coordinate heatmap)
+# ---------------------------
+gold_points = (
+    df.select("city", "lat", "lon", "speed_ratio", "batch_ts")
+      .withColumn("congestion_level",
+          when(col("speed_ratio") >= 0.9, "free")
+          .when(col("speed_ratio") >= 0.7, "moderate")
+          .when(col("speed_ratio") >= 0.5, "heavy")
+          .otherwise("severe"))
+      .withColumnRenamed("batch_ts", "observation_ts")
+      .withColumn("observation_ts", to_timestamp(col("observation_ts"), "yyyyMMdd'T'HHmmss"))
+)
+
+(
+    gold_points.write
+        .format("jdbc")
+        .option("url", "jdbc:postgresql://postgres:5432/airflow_db")
+        .option("dbtable", "traffic_points")
+        .option("user", "airflow")
+        .option("password", "airflow")
+        .option("driver", "org.postgresql.Driver")
+        .mode("append")
+        .save()
+)
+
+# ---------------------------
+# AGGREGATE METRICS (traffic_kpis)
 # ---------------------------
 gold = (
     df.groupBy("city", "batch_ts", "road_id", "frc")
