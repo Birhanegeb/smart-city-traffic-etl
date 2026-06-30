@@ -64,11 +64,6 @@ This gold output is what gets written to `traffic_kpis` in PostgreSQL and surfac
 ## Dashboards
 ......
 
-Includes:
-- Average speed by city over time
-- Congestion level distribution
-- Congestion percent by city
-
 ## Repository Structure
 
 ```
