@@ -1,6 +1,6 @@
 # Smart City Traffic ETL Pipeline
 
-Real-time traffic data pipeline for Berlin, Bremen, and Frankfurt using the TomTom Traffic API, built on a medallion architecture (bronze/silver/gold) with PySpark, Airflow, PostgreSQL, and Superset — fully containerized with Docker Compose.
+Real-time traffic data pipeline for Berlin, Bremen, and Frankfurt using the TomTom Traffic API, built on a medallion architecture (bronze/silver/gold) with PySpark, Airflow, PostgreSQL, and Superset - fully containerized with Docker Compose.
 
 ## Architecture
 
