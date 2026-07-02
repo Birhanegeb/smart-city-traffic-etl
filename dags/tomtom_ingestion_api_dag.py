@@ -2,38 +2,34 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
-from common.extract import build_grid, fetch_flow_segment
+from common.extract import build_grid, fetch_flow_segment, fetch_incidents
 from common.config import CITY_CONFIG, DEFAULT_ARGS
 from common.paths import RAW_DIR, ensure_dirs
 
 import json
 import logging
+import os
 
 logger = logging.getLogger(__name__)
+
+RAW_INCIDENTS_DIR = RAW_DIR.parent / "raw_incidents"
 
 
 def fetch_api_data(city: str, **context):
     ensure_dirs()
-
     ts = context["ts_nodash"]
     cfg = CITY_CONFIG[city]
-
     grid = build_grid(cfg["bbox"], cfg["grid_steps"])
-
     out_path = RAW_DIR / f"tomtom_{city}_{ts}.jsonl"
-
     success = 0
     failed = 0
-
     with open(out_path, "w") as f:
         for lat, lon in grid:
             try:
                 raw = fetch_flow_segment(lat, lon)
                 seg = raw.get("flowSegmentData", {})
-
                 if not seg:
                     continue
-
                 record = {
                     "city": city,
                     "batch_ts": ts,
@@ -46,15 +42,52 @@ def fetch_api_data(city: str, **context):
                     "confidence": float(seg.get("confidence", 0) or 0),
                     "road_closure": bool(seg.get("roadClosure", False)),
                 }
-
                 f.write(json.dumps(record) + "\n")
                 success += 1
-
             except Exception as e:
                 failed += 1
                 logger.warning(f"[{city}] failed ({lat},{lon}): {e}")
-
     logger.info(f"[{city}] success={success}, failed={failed}, file={out_path}")
+
+
+def fetch_incident_data(city: str, **context):
+    ensure_dirs()
+    RAW_INCIDENTS_DIR.mkdir(parents=True, exist_ok=True)
+    ts = context["ts_nodash"]
+    cfg = CITY_CONFIG[city]
+    out_path = RAW_INCIDENTS_DIR / f"incidents_{city}_{ts}.jsonl"
+    try:
+        raw = fetch_incidents(cfg["bbox"])
+        incidents = raw.get("incidents", [])
+        with open(out_path, "w") as f:
+            for incident in incidents:
+                props = incident.get("properties", {})
+                geometry = incident.get("geometry", {})
+                coords = geometry.get("coordinates", [])
+                if isinstance(coords[0], list):
+                    lat = coords[0][1]
+                    lon = coords[0][0]
+                else:
+                    lat = coords[1]
+                    lon = coords[0]
+                record = {
+                    "city": city,
+                    "batch_ts": ts,
+                    "incident_type": incident.get("type"),
+                    "category": props.get("iconCategory"),
+                    "lat": lat,
+                    "lon": lon,
+                    "delay_seconds": props.get("delay"),
+                    "road_numbers": json.dumps(props.get("roadNumbers", [])),
+                    "from_road": props.get("from"),
+                    "to_road": props.get("to"),
+                    "start_time": props.get("startTime"),
+                    "end_time": props.get("endTime"),
+                }
+                f.write(json.dumps(record) + "\n")
+        logger.info(f"[{city}] incidents={len(incidents)}, file={out_path}")
+    except Exception as e:
+        logger.warning(f"[{city}] incident fetch failed: {e}")
 
 
 with DAG(
@@ -66,7 +99,7 @@ with DAG(
     tags=["tomtom", "ingestion"],
 ) as dag:
 
-    tasks = [
+    flow_tasks = [
         PythonOperator(
             task_id=f"fetch_{city}",
             python_callable=fetch_api_data,
@@ -75,11 +108,27 @@ with DAG(
         for city in CITY_CONFIG
     ]
 
+    incident_tasks = [
+        PythonOperator(
+            task_id=f"fetch_incidents_{city}",
+            python_callable=fetch_incident_data,
+            op_kwargs={"city": city},
+        )
+        for city in CITY_CONFIG
+    ]
+
     trigger_spark = TriggerDagRunOperator(
         task_id="trigger_spark_pipeline",
         trigger_dag_id="tomtom_spark_pipeline",
-        wait_for_completion=True,
+        wait_for_completion=False,
     )
 
-    for task in tasks:
+    trigger_incidents = TriggerDagRunOperator(
+        task_id="trigger_incidents_pipeline",
+        trigger_dag_id="tomtom_incidents_pipeline",
+        wait_for_completion=False,
+    )
+
+    for task in flow_tasks + incident_tasks:
         task >> trigger_spark
+        task >> trigger_incidents

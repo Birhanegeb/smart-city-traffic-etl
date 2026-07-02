@@ -77,6 +77,29 @@ docker-compose.yml
 .env.example
 ```
 
+### SMTP Configuration
+
+Add the following to your '.env' file:
+
+AIRFLOW__SMTP__SMTP_HOST=smtp.gmail.com
+AIRFLOW__SMTP__SMTP_PORT=587
+AIRFLOW__SMTP__SMTP_STARTTLS=True
+AIRFLOW__SMTP__SMTP_SSL=False
+AIRFLOW__SMTP__SMTP_USER=your_gmail@gmail.com
+AIRFLOW__SMTP__SMTP_PASSWORD=your_16_char_app_password
+AIRFLOW__SMTP__SMTP_MAIL_FROM=your_gmail@gmail.com
+
+Then restart with 'docker compose down && docker compose up -d' — no rebuild required.
+
+### Alert Behavior
+
+After each pipeline run, Airflow checks 'traffic_incidents' in PostgreSQL for newly detected accidents. If incidents are found, an email is sent containing:
+
+- City and location of the incident
+- Incident category (accident, road closure, jam)
+- Estimated delay in seconds
+- Detection timestamp
+
 ## Notes
 
 - Single `docker compose up -d` workflow — no staged startup required.

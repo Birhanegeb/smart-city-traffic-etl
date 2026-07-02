@@ -40,3 +40,41 @@ CREATE TABLE IF NOT EXISTS traffic_points (
     observation_ts TIMESTAMP,
     created_at TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE IF NOT EXISTS traffic_incidents (
+    id BIGSERIAL PRIMARY KEY,
+    city VARCHAR(64),
+    incident_type VARCHAR(64),
+    category VARCHAR(64),
+    lat FLOAT,
+    lon FLOAT,
+    delay_seconds FLOAT,
+    road_numbers VARCHAR(256),
+    from_road VARCHAR(256),
+    to_road VARCHAR(256),
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    observed_at TIMESTAMP,
+    batch_ts VARCHAR(64),
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS pipeline_metrics (
+    id BIGSERIAL PRIMARY KEY,
+    dag_id VARCHAR(128),
+    run_id VARCHAR(256),
+    task_id VARCHAR(128),
+    batch_id VARCHAR(256),
+    city VARCHAR(64),
+    ingestion_timestamp TIMESTAMP,
+    records_read BIGINT,
+    records_written BIGINT,
+    records_dropped BIGINT,
+    rows_processed BIGINT,
+    api_execution_time FLOAT,
+    spark_execution_time FLOAT,
+    total_execution_time FLOAT,
+    status VARCHAR(32),
+    error_message TEXT,
+    measured_at TIMESTAMP DEFAULT NOW()
+);

@@ -2,12 +2,7 @@ import time
 import psycopg2
 from datetime import datetime
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import (
-    col, sha2, concat_ws, current_timestamp,
-    row_number, when, to_date
-)
-from pyspark.sql.functions import round as spark_round
-from pyspark.sql.window import Window
+from pyspark.sql.functions import col, current_timestamp, to_timestamp, to_date
 
 def write_metrics(dag_id, task_id, batch_id, city, records_read,
                   records_written, records_dropped, spark_time, status, error=None):
@@ -33,50 +28,25 @@ def write_metrics(dag_id, task_id, batch_id, city, records_read,
     cur.close()
     conn.close()
 
-spark = (
-    SparkSession.builder
-    .appName("tomtom_silver_layer")
-    .getOrCreate()
-)
+spark = SparkSession.builder.appName("incidents_silver").getOrCreate()
 
-bronze_path = "/opt/data/bronze/tomtom_segments"
-silver_path = "/opt/data/silver/tomtom_segments"
+BRONZE_PATH = "/opt/data/bronze/incidents"
+SILVER_PATH = "/opt/data/silver/incidents"
 
 start_time = time.time()
 
-df = spark.read.parquet(bronze_path)
+df = spark.read.parquet(BRONZE_PATH)
 records_read = df.count()
 
 df = (
     df.filter(col("city").isNotNull())
       .filter(col("lat").isNotNull())
       .filter(col("lon").isNotNull())
-      .filter(col("current_speed").isNotNull())
-      .filter(col("free_flow_speed").isNotNull())
-)
-
-df = df.withColumn(
-    "road_id",
-    sha2(concat_ws("|", col("city"), col("lat"), col("lon"), col("frc")), 256)
-)
-
-df = df.withColumn(
-    "speed_ratio",
-    when(
-        col("free_flow_speed") > 0,
-        spark_round(col("current_speed") / col("free_flow_speed"), 3)
-    ).otherwise(None)
-)
-
-df = df.withColumn("processed_at", current_timestamp())
-df = df.withColumn("date", to_date(col("batch_ts"), "yyyyMMdd'T'HHmmss"))
-
-window = Window.partitionBy("city", "batch_ts", "road_id").orderBy(col("processed_at").desc())
-
-df = (
-    df.withColumn("rn", row_number().over(window))
-      .filter(col("rn") == 1)
-      .drop("rn")
+      .withColumn("start_time", to_timestamp(col("start_time")))
+      .withColumn("end_time", to_timestamp(col("end_time")))
+      .withColumn("observed_at", to_timestamp(col("batch_ts"), "yyyyMMdd'T'HHmmss"))
+      .withColumn("processed_at", current_timestamp())
+      .withColumn("date", to_date(col("batch_ts"), "yyyyMMdd'T'HHmmss"))
 )
 
 records_written = df.count()
@@ -86,18 +56,18 @@ records_dropped = records_read - records_written
     df.write
       .mode("append")
       .partitionBy("city", "date")
-      .parquet(silver_path)
+      .parquet(SILVER_PATH)
 )
 
 spark_time = round(time.time() - start_time, 2)
-batch_id = df.select("batch_ts").first()[0]
+batch_id = df.select("batch_ts").first()[0] if records_written > 0 else "unknown"
 
 for row in df.select("city").distinct().collect():
     city_name = row[0]
     city_count = df.filter(col("city") == city_name).count()
     write_metrics(
-        dag_id="tomtom_spark_pipeline",
-        task_id="bronze_to_silver",
+        dag_id="tomtom_incidents_pipeline",
+        task_id="incidents_silver",
         batch_id=batch_id,
         city=city_name,
         records_read=records_read,
@@ -107,4 +77,5 @@ for row in df.select("city").distinct().collect():
         status="success"
     )
 
+print("Silver incidents written.")
 spark.stop()

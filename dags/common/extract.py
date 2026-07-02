@@ -33,3 +33,23 @@ def fetch_flow_segment(lat: float, lon: float):
     resp = requests.get(TOMTOM_URL, params=params, timeout=15)
     resp.raise_for_status()
     return resp.json()
+
+INCIDENTS_URL = "https://api.tomtom.com/traffic/services/5/incidentDetails"
+
+import urllib.request
+import json as json_lib
+
+def fetch_incidents(bbox: tuple):
+    min_lon, min_lat, max_lon, max_lat = bbox
+    fields = "{incidents{type,geometry{type,coordinates},properties{iconCategory,startTime,endTime,from,to,delay,roadNumbers}}}"
+    url = (
+        f"{INCIDENTS_URL}"
+        f"?key={TOMTOM_API_KEY}"
+        f"&bbox={min_lon},{min_lat},{max_lon},{max_lat}"
+        f"&fields={fields}"
+        f"&language=en-GB"
+        f"&timeValidityFilter=present"
+    )
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        return json_lib.loads(resp.read().decode())

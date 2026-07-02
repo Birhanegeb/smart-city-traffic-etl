@@ -1,38 +1,53 @@
+import time
+import psycopg2
+from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import (
-    avg, count, sum, when, col, round, lit, to_timestamp, max as spark_max
+    avg, count, sum, when, col, to_timestamp, max as spark_max
 )
+from pyspark.sql.functions import round as spark_round
 
-# ---------------------------
-# SPARK SESSION
-# ---------------------------
+def write_metrics(dag_id, task_id, batch_id, city, records_read,
+                  records_written, records_dropped, spark_time, status, error=None):
+    conn = psycopg2.connect(
+        host="postgres", port=5432, dbname="airflow_db",
+        user="airflow", password="airflow"
+    )
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO pipeline_metrics (
+            dag_id, task_id, batch_id, city,
+            ingestion_timestamp, records_read, records_written,
+            records_dropped, rows_processed, spark_execution_time,
+            total_execution_time, status, error_message
+        ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """, (
+        dag_id, task_id, batch_id, city,
+        datetime.utcnow(), records_read, records_written,
+        records_dropped, records_written, spark_time,
+        spark_time, status, error
+    ))
+    conn.commit()
+    cur.close()
+    conn.close()
+
 spark = (
     SparkSession.builder
     .appName("tomtom_gold_layer")
     .getOrCreate()
 )
 
-# ---------------------------
-# PATHS
-# ---------------------------
 silver_path = "/opt/data/silver/tomtom_segments"
 gold_path = "/opt/data/gold/traffic_dashboard"
 
-# ---------------------------
-# READ SILVER
-# ---------------------------
-df = spark.read.parquet(silver_path)
+start_time = time.time()
 
-# ---------------------------
-# SCOPE TO LATEST BATCH ONLY
-# Prevents reprocessing/duplicating full history every run
-# ---------------------------
+df = spark.read.parquet(silver_path)
+records_read = df.count()
+
 latest_batch = df.agg(spark_max("batch_ts")).collect()[0][0]
 df = df.filter(col("batch_ts") == latest_batch)
 
-# ---------------------------
-# GOLD POINTS (for coordinate heatmap)
-# ---------------------------
 gold_points = (
     df.select("city", "lat", "lon", "speed_ratio", "batch_ts")
       .withColumn("congestion_level",
@@ -56,33 +71,27 @@ gold_points = (
         .save()
 )
 
-# ---------------------------
-# AGGREGATE METRICS (traffic_kpis)
-# ---------------------------
 gold = (
     df.groupBy("city", "batch_ts", "road_id", "frc")
       .agg(
-          round(avg("current_speed"), 2).alias("current_speed"),
-          round(avg("free_flow_speed"), 2).alias("free_flow_speed"),
-          round(avg("travel_time"), 2).alias("current_travel_time"),
-          round(avg("travel_time"), 2).alias("free_flow_travel_time"),
-          round(avg("confidence"), 3).alias("confidence"),
+          spark_round(avg("current_speed"), 2).alias("current_speed"),
+          spark_round(avg("free_flow_speed"), 2).alias("free_flow_speed"),
+          spark_round(avg("travel_time"), 2).alias("current_travel_time"),
+          spark_round(avg("travel_time"), 2).alias("free_flow_travel_time"),
+          spark_round(avg("confidence"), 3).alias("confidence"),
           sum(when(col("road_closure") == True, 1).otherwise(0)).alias("road_closure"),
-          round(avg("speed_ratio"), 3).alias("speed_ratio"),
+          spark_round(avg("speed_ratio"), 3).alias("speed_ratio"),
           sum(when(col("speed_ratio") < 0.80, 1).otherwise(0)).alias("congested_segments"),
           count("*").alias("road_segments"),
       )
 )
 
-# ---------------------------
-# CONGESTION PERCENT & DELAY
-# ---------------------------
 gold = (
     gold
     .withColumn("congestion_percent",
-        round((col("congested_segments") / col("road_segments")) * 100, 2))
+        spark_round((col("congested_segments") / col("road_segments")) * 100, 2))
     .withColumn("delay_seconds",
-        round((col("current_travel_time") - col("free_flow_travel_time")), 2))
+        spark_round((col("current_travel_time") - col("free_flow_travel_time")), 2))
     .withColumnRenamed("batch_ts", "observation_ts")
     .withColumn("observation_ts", to_timestamp(col("observation_ts"), "yyyyMMdd'T'HHmmss"))
     .withColumn("road_closure", col("road_closure").cast("boolean"))
@@ -93,9 +102,6 @@ gold = (
         .otherwise("severe"))
 )
 
-# ---------------------------
-# WRITE GOLD PARQUET
-# ---------------------------
 (
     gold.write
         .mode("overwrite")
@@ -103,9 +109,10 @@ gold = (
         .parquet(gold_path)
 )
 
-# ---------------------------
-# WRITE GOLD TO POSTGRESQL
-# ---------------------------
+records_written = gold.count()
+records_dropped = records_read - records_written
+spark_time = round(time.time() - start_time, 2)
+
 (
     gold.select(
         "city", "road_id", "observation_ts", "frc",
@@ -124,5 +131,20 @@ gold = (
     .mode("append")
     .save()
 )
+
+for row in gold.select("city").distinct().collect():
+    city_name = row[0]
+    city_count = gold.filter(col("city") == city_name).count()
+    write_metrics(
+        dag_id="tomtom_spark_pipeline",
+        task_id="silver_to_gold",
+        batch_id=latest_batch,
+        city=city_name,
+        records_read=records_read,
+        records_written=city_count,
+        records_dropped=records_dropped,
+        spark_time=spark_time,
+        status="success"
+    )
 
 spark.stop()
