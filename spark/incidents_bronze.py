@@ -3,6 +3,7 @@ import psycopg2
 from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, to_date
+from pyspark.sql.functions import max as spark_max
 from pyspark.sql.types import (
     StructType, StructField, StringType, DoubleType
 )
@@ -54,6 +55,8 @@ schema = StructType([
 start_time = time.time()
 
 df = spark.read.schema(schema).json(RAW_PATH)
+latest_batch = df.agg(spark_max("batch_ts")).collect()[0][0]
+df = df.filter(col("batch_ts") == latest_batch)
 records_read = df.count()
 
 df = df.withColumn("date", to_date(col("batch_ts"), "yyyyMMdd'T'HHmmss"))

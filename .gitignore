@@ -19,10 +19,12 @@ data/raw/*
 data/bronze/*
 data/silver/*
 data/gold/*
+data/raw_incidents*
 !data/raw/.gitkeep
 !data/bronze/.gitkeep
 !data/silver/.gitkeep
 !data/gold/.gitkeep
+data/raw_incidents/.gitkeep
 
 # Docker
 *.pid

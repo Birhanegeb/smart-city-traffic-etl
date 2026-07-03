@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import requests
 from .config import TOMTOM_API_KEY, TOMTOM_URL
 
