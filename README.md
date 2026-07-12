@@ -168,4 +168,6 @@ This project demonstrates the practical implementation of a scalable smart city 
 
 For complete technical details, database schemas, pipeline internals, and deployment instructions, see:
 
-**DETAILED_README.md**
+For complete technical details, database schemas, pipeline internals, and deployment instructions, see:
+
+[Detailed Technical Documentation](DETAILED_README.md)
