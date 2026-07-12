@@ -162,9 +162,18 @@ This project demonstrates the practical implementation of a scalable smart city 
 
 * Data engineering architecture
 * Pipeline automation
+* Distributed processing
+* Reproducibility
+* Operational monitoring
 
-For complete technical details, database schemas, pipeline internals, and deployment instructions, see:
+This README provides a high-level overview of the project.
 
-For complete technical details, database schemas, pipeline internals, and deployment instructions, see:
-
+For complete technical details, including:
+- Architecture explanation
+- Airflow DAG workflows
+- Spark processing logic
+- Database schemas
+- Dashboard configuration
+- Deployment instructions
+see :
 [Detailed Technical Documentation](DETAILED_README.md)
