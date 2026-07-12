@@ -162,9 +162,6 @@ This project demonstrates the practical implementation of a scalable smart city 
 
 * Data engineering architecture
 * Pipeline automation
-* Distributed processing
-* Reproducibility
-* Operational monitoring
 
 For complete technical details, database schemas, pipeline internals, and deployment instructions, see:
 
