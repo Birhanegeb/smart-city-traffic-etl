@@ -1,4 +1,4 @@
-# Terraform Deployment Guide — Smart City Traffic ETL Pipeline
+# Terraform Deployment Guide - Smart City Traffic ETL Pipeline
 
 ## Overview
 
