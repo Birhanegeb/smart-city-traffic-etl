@@ -174,7 +174,7 @@ For complete technical details, including:
 - Spark processing logic
 - Database schemas
 - Dashboard configuration
-- Deployment instructions
+- Deployment instructions  
 see :
 [Detailed Technical Documentation](DETAILED_README.md)  
 [AWS Deployment Guide](terraform/README.md)
