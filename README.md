@@ -176,6 +176,5 @@ For complete technical details, including:
 - Dashboard configuration
 - Deployment instructions
 see :
-[Detailed Technical Documentation](DETAILED_README.md)
-
-[AWS Deployment Guide](terraform/README.md)
+- [Detailed Technical Documentation](DETAILED_README.md)
+- [AWS Deployment Guide](terraform/README.md)
