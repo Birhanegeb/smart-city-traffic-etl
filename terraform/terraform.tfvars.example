@@ -1,0 +1,8 @@
+key_name = "your-existing-keypair-name"# AWS region
+aws_region = "eu-central-1"
+
+# EC2 instance type
+instance_type = "t3.small"
+
+# GitHub repository
+repo_url = "https://github.com/Birhanegeb/smart-city-traffic-etl.git"
