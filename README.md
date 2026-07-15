@@ -177,3 +177,4 @@ For complete technical details, including:
 - Deployment instructions
 see :
 [Detailed Technical Documentation](DETAILED_README.md)
+[AWS Deployment Guide](terraform/README.md)
