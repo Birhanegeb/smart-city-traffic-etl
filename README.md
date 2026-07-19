@@ -1,182 +1,87 @@
 # Smart City Traffic ETL Pipeline
 
-A near real-time traffic data engineering pipeline developed as a thesis project to demonstrate scalable data ingestion, processing, orchestration, and visualization for smart city applications.
+A fault-tolerant, near real-time(every 15 minute incients and every 1 hour range traffic flow)data engineering pipeline that ingests, processes, and visualizes live traffic flow and incident data for three German cities — **Berlin**, **Bremen**, and **Frankfurt** - using the TomTom Traffic API.
 
-The system collects traffic flow and incident data from the **TomTom Traffic API** for three German cities:
+Built as a master's thesis project, the pipeline demonstrates three research objectives: **infrastructure reproducibility**, **self-healing orchestration**, and **multi-city schema standardization**.
 
-* Berlin
-* Bremen
-* Frankfurt
-
-The pipeline implements automated workflows, distributed processing, and interactive dashboards using modern data engineering technologies.
+> 📖 For full architectural detail, schema documentation, setup instructions, and configuration reference, see **[DETAILED_README.md](./DETAILED_README.md)**.
 
 ---
 
-## Project Overview
+## What It Does
 
-The pipeline follows a complete ETL architecture:
+- Pulls live traffic flow and incident data from the TomTom Traffic API every 15 minutes.
+- Processes raw data through a **medallion architecture** (Bronze → Silver → Gold) using PySpark.
+- Aggregates KPIs (speed ratios, congestion levels, delays) into PostgreSQL.
+- Visualizes results in **Apache Superset**, including a live congestion.
+- Sends **automated email alerts** for severe incidents (accidents, road closures).
+- Runs as a fully containerized stack (Docker Compose) with a **Terraform**- based path to AWS EC2 deployment.
 
-```text
+---
+
+## Architecture at a Glance
+
+```
 TomTom Traffic API
         |
         v
-Apache Airflow
+Airflow Ingestion DAGs (every 15 min)
         |
-        v
-Apache Spark (PySpark)
-        |
-        v
-Bronze -> Silver -> Gold Layers
-        |
-        v
-PostgreSQL
-        |
-        v
-Apache Superset Dashboards
+Raw JSONL --> Spark Bronze --> Spark Silver --> Spark Gold
+                                                     |
+                                                     v
+                                              PostgreSQL
+                                                /        \
+                                    Apache Superset   Email Alerts
+                                    (Dashboards)       (severe incidents)
 ```
 
-The system supports:
-
-* Automated traffic data ingestion
-* Multi-city schema standardization
-* Distributed data processing
-* Historical traffic analysis
-* Real-time congestion monitoring
-* Severe incident detection and email alerts
+Full diagrams, DAG chains, and layer-by-layer breakdowns are in the [detailed README](./DETAILED_README.md#architecture-overview).
 
 ---
 
-## Architecture Highlights
+## Tech Stack
 
-### Data Ingestion
-
-Traffic flow and incident data are collected from TomTom APIs and stored as JSONL batches.
-
-### Bronze Layer
-
-* Preserves raw source data
-* Converts JSONL data into Parquet format
-* Maintains reproducible processing
-
-### Silver Layer
-
-* Data cleaning and validation
-* Deduplication
-* Road segment identification
-* Congestion metric calculation
-
-### Gold Layer
-
-* Generates analytical KPIs
-* Stores results in PostgreSQL
-* Provides data for visualization and analysis
-
----
-
-## Technology Stack
-
-| Component              | Technology             |
-| ---------------------- | ---------------------- |
-| Workflow Orchestration | Apache Airflow         |
-| Data Processing        | Apache Spark / PySpark |
-| Storage                | Parquet + PostgreSQL   |
-| Visualization          | Apache Superset        |
-| Containerization       | Docker Compose         |
-| Data Source            | TomTom Traffic API     |
-
----
-
-## Key Features
-
-* Automated ETL pipeline orchestration
-* Medallion architecture (Bronze/Silver/Gold)
-* Multi-city traffic processing
-* Congestion classification
-* Incident monitoring and email alerts
-* Reproducible Docker deployment
-* Interactive traffic dashboards
-
----
-
-## Dashboard Capabilities
-
-The Superset dashboards provide:
-
-* Current congestion hotspots
-* Traffic speed analysis
-* Road closure monitoring
-* City-level traffic comparison
-* Historical congestion trends
+Apache Airflow · Apache Spark (PySpark) · PostgreSQL · Apache Superset · Docker Compose · Terraform · AWS EC2 · TomTom Traffic API
 
 ---
 
 ## Quick Start
 
-Requirements:
-
-* Docker
-* Docker Compose
-* TomTom API key
-
-Run:
-
 ```bash
 git clone https://github.com/Birhanegeb/smart-city-traffic-etl.git
-
 cd smart-city-traffic-etl
-
-cp .env.example .env
-
+cp .env.example .env      # fill in your TomTom API key and credentials
 docker compose up -d --build
 ```
 
-Access services:
+Then open:
+- Airflow UI → http://localhost:8080
+- Superset UI → http://localhost:8088
+- Spark UI → http://localhost:8081
 
-| Service  | URL                   |
-| -------- | --------------------- |
-| Airflow  | http://localhost:8080 |
-| Superset | http://localhost:8088 |
-| Spark UI | http://localhost:8081 |
-
----
-
-## Repository Structure
-
-```text
-smart-city-traffic-etl/
-|
-|-- terraform/             # Terraform deployment
-|-- scriptes/              # scripts for terraform
-|-- dags/                  # Airflow workflows
-|-- spark/                 # PySpark processing jobs
-|-- utils/                 # Database initialization scripts
-|-- superset/              # Dashboard configuration
-|-- data/                  # Runtime data (ignored by Git)
-|-- docker-compose.yml
-|-- .env.example
-```
+Full setup steps (Airflow connections, SMTP config, Terraform deployment) are covered in [DETAILED_README.md](./DETAILED_README.md#quick-start--installation-guide).
 
 ---
 
-## Thesis Context
+## Thesis Research Questions
 
-This project demonstrates the practical implementation of a scalable smart city traffic data pipeline, focusing on:
+| Question | Focus |
+|---|---|
+| RQ1 | Infrastructure reproducibility via Docker & Terraform |
+| RQ2 | Self-healing DAG behavior via Airflow retries and triggers |
+| RQ3 | Multi-city schema standardization via PySpark |
 
-* Data engineering architecture
-* Pipeline automation
-* Distributed processing
-* Reproducibility
-* Operational monitoring
+See the [full evaluation](./DETAILED_README.md#evaluation-against-the-research-questions) for how each was addressed.
 
-This README provides a high-level overview of the project.
+---
 
-For complete technical details, including:
-- Architecture explanation
-- Airflow DAG workflows
-- Spark processing logic
-- Database schemas
-- Dashboard configuration
-- Deployment instructions  
-see :
-[Detailed Technical Documentation](DETAILED_README.md) and  
-[AWS Deployment Guide](terraform/README.md)
+## Documentation
+
+| Doc | Contents |
+|---|---|
+| [DETAILED_README.md](./DETAILED_README.md) | Full architecture, data schemas, DAG/Spark job catalog, database schema, dashboard setup, Terraform deployment, and troubleshooting |
+
+---
+
+*Author: Birhane - Master's Thesis, Data Engineering*
