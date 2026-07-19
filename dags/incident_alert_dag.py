@@ -1,8 +1,8 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.email import EmailOperator
-from airflow.utils.dates import days_ago
 from common.config import DEFAULT_ARGS, PG_CONN
+from datetime import datetime
 
 import psycopg2
 import logging
@@ -70,7 +70,7 @@ def check_incidents(**context):
         """
 
     email_body = f"""
-    <h5>Dear Driver, </h5>
+    <h5>Dear Birhane, </h5>
     <p>{len(incidents)} incident(s) have been detected. see below for details.</p>
     <table border="1" cellpadding="6" cellspacing="0">
         <tr>
@@ -115,7 +115,7 @@ def send_alert(**context):
 with DAG(
     dag_id="incident_alert_dag",
     default_args=DEFAULT_ARGS,
-    start_date=days_ago(1),
+    start_date=datetime(2026, 7, 1),
     schedule_interval=None,
     catchup=False,
     tags=["alerts", "incidents", "email"],

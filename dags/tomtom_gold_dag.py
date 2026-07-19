@@ -1,7 +1,8 @@
 from airflow import DAG
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
-from airflow.utils.dates import days_ago
 from common.config import DEFAULT_ARGS
+from datetime import datetime
+
 SPARK_CONF = {
     "spark.master": "spark://spark-master:7077",
     "spark.executor.memory": "512m",
@@ -14,8 +15,8 @@ SPARK_CONF = {
 with DAG(
     dag_id="tomtom_gold_dag",
     default_args=DEFAULT_ARGS,
-    start_date=days_ago(1),
-    schedule_interval="@hourly",
+    start_date=datetime(2026, 7, 1),
+    schedule=None,
     catchup=False,
     tags=["spark", "tomtom", "gold"],
 ) as dag:

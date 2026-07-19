@@ -145,6 +145,8 @@ Access services:
 ```text
 smart-city-traffic-etl/
 |
+|-- terraform/             # Terraform deployment
+|-- scriptes/              # scripts for terraform
 |-- dags/                  # Airflow workflows
 |-- spark/                 # PySpark processing jobs
 |-- utils/                 # Database initialization scripts
