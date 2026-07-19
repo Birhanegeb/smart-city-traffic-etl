@@ -36,7 +36,7 @@ The project was implemented as a thesis-style data engineering solution with thr
 19. [Running the Pipeline](#19-running-the-pipeline)
 20. [Evaluation Against the Research Questions](#20-evaluation-against-the-research-questions)
 21. [Future Improvements](#21-future-improvements)
-22. [Notes](#notes)
+
 ---
 
 ## 1. Project Overview
@@ -683,13 +683,4 @@ The current repository is a solid foundation for a thesis project. Realistic nex
 - Deploying the stack on Kubernetes instead of Docker Compose.
 - Introducing Kafka or other streaming platforms for continuous ingestion.
 - Replacing Parquet with Delta Lake or Iceberg for table format management.
-- Adding more cities and more advanced geospatial analytics.
-- Extending the dashboard layer with richer Superset visuals and alerting rules.
-- Adding automated tests and CI/CD pipelines for the DAG and Spark code.
-
 ---
-
-## Notes
-
-- The repository includes a Superset service and sample chart assets
-- The ETL flow is fully visible in the repository through the Airflow DAGs, Spark jobs, database initialization SQL, and Terraform deployment code.
