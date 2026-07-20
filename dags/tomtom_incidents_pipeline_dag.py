@@ -14,43 +14,147 @@ logger = logging.getLogger(__name__)
 RAW_INCIDENTS_DIR = RAW_DIR.parent / "raw_incidents"
 
 def fetch_incident_data(city: str, **context):
+
     ensure_dirs()
-    RAW_INCIDENTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    RAW_INCIDENTS_DIR.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
     ts = context["ts_nodash"]
+
     cfg = CITY_CONFIG[city]
-    out_path = RAW_INCIDENTS_DIR / f"incidents_{city}_{ts}.jsonl"
-    try:
-        raw = fetch_incidents(cfg["bbox"])
-        incidents = raw.get("incidents", [])
-        with open(out_path, "w") as f:
-            for incident in incidents:
-                props = incident.get("properties", {})
-                geometry = incident.get("geometry", {})
-                coords = geometry.get("coordinates", [])
-                if isinstance(coords[0], list):
-                    lat = coords[0][1]
-                    lon = coords[0][0]
-                else:
-                    lat = coords[1]
-                    lon = coords[0]
-                record = {
-                    "city": city,
-                    "batch_ts": ts,
-                    "incident_type": incident.get("type"),
-                    "category": props.get("iconCategory"),
-                    "lat": lat,
-                    "lon": lon,
-                    "delay_seconds": props.get("delay"),
-                    "road_numbers": json.dumps(props.get("roadNumbers", [])),
-                    "from_road": props.get("from"),
-                    "to_road": props.get("to"),
-                    "start_time": props.get("startTime"),
-                    "end_time": props.get("endTime"),
-                }
-                f.write(json.dumps(record) + "\n")
-        logger.info(f"[{city}] incidents={len(incidents)}, file={out_path}")
-    except Exception as e:
-        logger.warning(f"[{city}] incident fetch failed: {e}")
+
+
+    out_path = (
+        RAW_INCIDENTS_DIR /
+        f"incidents_{city}_{ts}.jsonl"
+    )
+
+
+    raw = fetch_incidents(
+        cfg["bbox"]
+    )
+
+
+    incidents = raw.get(
+        "incidents",
+        []
+    )
+
+
+    if len(incidents) == 0:
+
+        raise ValueError(
+            f"[{city}] No incidents returned from TomTom"
+        )
+
+
+    written = 0
+
+
+    with open(
+        out_path,
+        "w"
+    ) as f:
+
+
+        for incident in incidents:
+
+            props = incident.get(
+                "properties",
+                {}
+            )
+
+            geometry = incident.get(
+                "geometry",
+                {}
+            )
+
+
+            coords = geometry.get(
+                "coordinates",
+                []
+            )
+
+
+            if not coords:
+                continue
+
+
+            if isinstance(coords[0], list):
+
+                lon = coords[0][0]
+                lat = coords[0][1]
+
+            else:
+
+                lon = coords[0]
+                lat = coords[1]
+
+
+            record = {
+
+                "city": city,
+
+                "batch_ts": ts,
+
+                "incident_type":
+                    incident.get("type"),
+
+                "category":
+                    props.get("iconCategory"),
+
+                "lat": lat,
+
+                "lon": lon,
+
+                "delay_seconds":
+                    props.get("delay"),
+
+                "road_numbers":
+                    json.dumps(
+                        props.get(
+                            "roadNumbers",
+                            []
+                        )
+                    ),
+
+                "from_road":
+                    props.get("from"),
+
+                "to_road":
+                    props.get("to"),
+
+                "start_time":
+                    props.get("startTime"),
+
+                "end_time":
+                    props.get("endTime"),
+            }
+
+
+            f.write(
+                json.dumps(record)
+                + "\n"
+            )
+
+            written += 1
+
+
+    if written == 0:
+
+        raise ValueError(
+            f"[{city}] Empty incident file generated"
+        )
+
+
+    logger.info(
+        f"[{city}] "
+        f"written={written}, "
+        f"file={out_path}"
+    )
 SPARK_CONF = {
     "spark.master": "spark://spark-master:7077",
     "spark.executor.memory": "512m",

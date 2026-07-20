@@ -19,13 +19,17 @@ data/raw/*
 data/bronze/*
 data/silver/*
 data/gold/*
-data/raw_incidents*
+data/raw_incidents/*
+
 !data/raw/.gitkeep
 !data/bronze/.gitkeep
 !data/silver/.gitkeep
 !data/gold/.gitkeep
-data/raw_incidents/.gitkeep
+!data/raw_incidents/.gitkeep
 
+# Sample data for docs/demo purposes — keep this folder tracked
+!data/git_samples/
+!data/git_samples/**
 # Docker
 *.pid
 

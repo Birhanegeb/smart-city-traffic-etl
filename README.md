@@ -64,14 +64,6 @@ Full setup steps (Airflow connections, SMTP config, Terraform deployment) are co
 
 ---
 
-## Thesis Research Questions
-
-| Question | Focus |
-|---|---|
-| RQ1 | Infrastructure reproducibility via Docker & Terraform |
-| RQ2 | Self-healing DAG behavior via Airflow retries and triggers |
-| RQ3 | Multi-city schema standardization via PySpark |
-
 See the [full evaluation](./DETAILED_README.md#evaluation-against-the-research-questions) for how each was addressed.
 
 ---
