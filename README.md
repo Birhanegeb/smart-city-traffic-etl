@@ -130,11 +130,11 @@ Then open:
 - Airflow UI → http://localhost:8080
 - Superset UI → http://localhost:8088
 - Spark UI → http://localhost:8081
-
+---
 - **`pipeline_metrics`** (Postgres) — per-task, per-city run metrics: records read/written/dropped, execution time, status. Powers pipeline health dashboards in Superset.
 - **`pipeline_logs`** (Postgres, via `db.py`) — structured log entries for DAG/task/city/stage/status, including error messages and retry counts.
 - **Email alerts** — `incident_alert_dag` sends an email whenever an Accident or Road Closed incident is detected in the latest batch.
-
+---
 ## Superset Dashboards
 
 - **Traffic heatmap** — `deck.gl` point-based visualization of `traffic_points`, color-coded by `congestion_level` (free / moderate / heavy / severe).
