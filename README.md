@@ -174,8 +174,6 @@ The alert mechanism allows rapid awareness of critical traffic situations withou
 
 The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation.
 
----
-
 ## Traffic Flow Dashboard
 
 The traffic dashboard is built from the `traffic_points` and `traffic_kpis` tables.
@@ -212,9 +210,6 @@ Visualizes:
 - Speed ratio distribution
 - Delay statistics
 - City-level traffic comparison
-
-
----
 
 ## Incident Dashboard
 
@@ -257,9 +252,7 @@ It visualizes:
 - Bronze/Silver/Gold execution comparison
 - Pipeline reliability trends
 
-
 These dashboards provide both operational monitoring and analytical insights into the performance of the smart city ETL platform.
----
 ---
 ## Self-Healing Behavior
 
@@ -268,6 +261,7 @@ These dashboards provide both operational monitoring and analytical insights int
 - **Per-point failure isolation**: `fetch_api_data` catches exceptions per grid point so a single failed TomTom request doesn't fail the whole city's ingestion — it's counted in `records_dropped` instead.
 - **Decoupled DAGs**: because ingestion, transformation, and aggregation are separate DAGs linked by `TriggerDagRunOperator`, a downstream Spark failure doesn't block the next 15-minute ingestion cycle.
 
+---
 ## Thesis Research Questions Mapping
 
 | RQ | Focus | Implemented via |
