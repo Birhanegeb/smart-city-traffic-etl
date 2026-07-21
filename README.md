@@ -131,16 +131,136 @@ Then open:
 - Superset UI → http://localhost:8088
 - Spark UI → http://localhost:8081
 ---
-- **`pipeline_metrics`** (Postgres) — per-task, per-city run metrics: records read/written/dropped, execution time, status. Powers pipeline health dashboards in Superset.
-- **`pipeline_logs`** (Postgres, via `db.py`) — structured log entries for DAG/task/city/stage/status, including error messages and retry counts.
-- **Email alerts** — `incident_alert_dag` sends an email whenever an Accident or Road Closed incident is detected in the latest batch.
+## Pipeline Monitoring and Analytics
+
+### Pipeline Metrics (PostgreSQL)
+
+The `pipeline_metrics` table stores execution-level information for every ETL stage.
+
+It records:
+
+- DAG ID
+- Task ID
+- Batch ID
+- City
+- Processing stage
+- Records written
+- Execution status
+- Processing timestamps
+
+This table enables monitoring of:
+
+- ETL execution performance
+- Data processing throughput
+- Task success and failure rates
+- City-level pipeline comparison
+
+The metrics are visualized in Superset through pipeline performance dashboards.
+
+# Automated Incident Alerts
+
+The `incident_alert_dag` provides automated monitoring for critical traffic events.
+
+Email notifications are generated when the latest incident batch contains:
+
+- Accident events
+- Road closure events
+
+The alert mechanism allows rapid awareness of critical traffic situations without manually checking dashboards.
+
 ---
-## Superset Dashboards
 
-- **Traffic heatmap** — `deck.gl` point-based visualization of `traffic_points`, color-coded by `congestion_level` (free / moderate / heavy / severe).
-- **KPI dashboard** — hourly trends from `traffic_kpis`: average speed, delay seconds, congestion percentage per city/road class (`frc`).
-- **Incident dashboard** — `traffic_incidents` table: type, category, delay, location, and timestamp.
+# Superset Dashboards
 
+The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation.
+
+---
+
+## Traffic Flow Dashboard
+
+The traffic dashboard is built from the `traffic_points` and `traffic_kpis` tables.
+
+It provides:
+
+### Congestion Map
+
+A geospatial visualization using traffic point locations.
+
+Displayed information:
+
+- City location
+- Latitude and longitude
+- Congestion level
+- Speed ratio
+
+Traffic points are classified according to congestion severity:
+
+- Free flow
+- Moderate congestion
+- Heavy congestion
+- Severe congestion
+
+
+### Traffic KPI Analysis
+
+Based on the `traffic_kpis` table.
+
+Visualizes:
+
+- Average current speed
+- Free-flow speed comparison
+- Speed ratio distribution
+- Delay statistics
+- City-level traffic comparison
+
+
+---
+
+## Incident Dashboard
+
+The incident dashboard uses the `traffic_incidents` table.
+
+It provides:
+
+### Incident Map
+
+Displays incident locations using:
+
+- Latitude
+- Longitude
+- City
+- Incident category
+
+
+### Incident Analysis
+
+Includes:
+
+- Incident type distribution
+- Incident category comparison
+- Incident count by city
+- Incident delay information
+- Temporal incident analysis
+
+
+---
+
+## Pipeline Performance Dashboard
+
+The pipeline monitoring dashboard uses the `pipeline_metrics` table.
+
+It visualizes:
+
+- Task execution status
+- Records processed per batch
+- Processing performance by city
+- Bronze/Silver/Gold execution comparison
+- Pipeline reliability trends
+
+
+These dashboards provide both operational monitoring and analytical insights into the performance of the smart city ETL platform.
+---
+---
 ## Self-Healing Behavior
 
 - **Retries with backoff**: every task uses `DEFAULT_ARGS` (3 retries, exponential backoff, capped at 10 minutes).
