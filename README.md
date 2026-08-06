@@ -121,7 +121,7 @@ Then open:
 ```
 # Superset Dashboards
 
-The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes refer ***[samplecharts](./superset/sample charts).
+The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes refer [Sample Charts](./superset/sample_charts).
 
 ## Self-Healing Behavior
 
@@ -139,7 +139,7 @@ The project provides interactive dashboards for traffic analysis, incident monit
 | RQ2 | Self-healing behavior | Retry/backoff config, latest-batch filtering, decoupled trigger-based Airflow DAGs, `pipeline_logs`/`pipeline_metrics` |
 | RQ3 | Multi-city schema standardization | `common/config.py` (`CITY_CONFIG`), shared PySpark schemas across Berlin/Bremen/Frankfurt in `bronze_job.py`/`incidents_bronze.py` |
 
-> 📖 For full architectural detail, schema documentation, setup instructions, terraform deployment and configuration references, see **[DETAILED_README.md](./DETAILED_README.md) and ****[Terraform Readme](./terraform/README.md)
+> 📖 For full architectural detail, schema documentation, setup instructions, terraform deployment and configuration references, see [DETAILED_README.md](./DETAILED_README.md) and [Terraform Readme](./terraform/README.md)
 
 ---
 
