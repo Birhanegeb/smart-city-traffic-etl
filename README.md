@@ -5,7 +5,7 @@ A self-healing micro-batch ETL pipeline that ingests live traffic flow and incid
 This repository is the implementation artifact for master's thesis: "Self-Healing Micro-Batch ETL Pipeline for Smart City Traffic Data Using Airflow, PySpark, Docker, Terraform, PostgreSQL, and Superset."
 
 ---
-## Architecture Overview
+## Pipeline Overview
 
 The system is a **near-real-time / periodic micro-batch pipeline** (not true streaming), built around two independent data domains:
 
@@ -51,8 +51,8 @@ TomTom API (Flow + Incidents)
 Incident pipeline additionally triggers:
    Gold (incidents) ──► incident_alert_dag ──► Email alert (SMTP, accidents/closures)
 ```
-
-## Architecture at a Glance
+---
+## Architecture overview
 
 ```
                          TomTom Traffic APIs
@@ -92,7 +92,7 @@ Incident pipeline additionally triggers:
           Dashboards                      Incident Notifications
                                           
                  
-
+```
 ---
 
 ## Tech Stack
@@ -112,17 +112,16 @@ git clone https://github.com/Birhanegeb/smart-city-traffic-etl.git
 cd smart-city-traffic-etl
 cp .env.example .env      # fill in your TomTom API key and credentials
 docker compose up -d --build
-```
 
 Then open:
 - Airflow UI → http://localhost:8080
 - Superset UI → http://localhost:8088
 - Spark UI → http://localhost:8081
 ---
-
+```
 # Superset Dashboards
 
-The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes are in superset forlder.
+The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes refer to [samplecharts](./superset/sample charts).
 
 ## Self-Healing Behavior
 

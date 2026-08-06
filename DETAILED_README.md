@@ -604,7 +604,7 @@ The EC2 instance bootstrap script [scripts/user_data.sh](scripts/user_data.sh) i
 ### Step 1: Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Birhanegeb/smart-city-traffic-etl
 cd smart-city-traffic-etl
 ```
 
@@ -680,7 +680,6 @@ The system writes observability data to PostgreSQL through the `pipeline_logs` a
 
 The current repository is a solid foundation for a thesis project. Realistic next steps include:
 
-- Deploying the stack on Kubernetes instead of Docker Compose.
-- Introducing Kafka or other streaming platforms for continuous ingestion.
-- Replacing Parquet with Delta Lake or Iceberg for table format management.
+- Deploying the stack on Kubernetes.
+- integrating Kafka for real streaming continuous ingestion.
 ---
