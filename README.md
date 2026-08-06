@@ -121,7 +121,7 @@ Then open:
 ```
 # Superset Dashboards
 
-The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes refer to [samplecharts](./superset/sample charts).
+The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. sample chartes refer ***[samplecharts](./superset/sample charts).
 
 ## Self-Healing Behavior
 
