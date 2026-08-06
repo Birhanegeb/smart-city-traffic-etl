@@ -20,12 +20,12 @@ Both domains follow a **Bronze → Silver → Gold** medallion architecture:
 |--------|--------------------------------------------------------------------------|----------------|
 | Raw    | Untouched JSONL dumps from the TomTom API, one file per batch/city       | Local filesystem (`/opt/data/raw*`) |
 | Bronze | Latest-batch filtering, null checks, date partitioning                   | Parquet |
-| Silver | Cleaning, deduplication, derived fields (e.g. `speed_ratio`, `road_id`), append-only durable audit trail | Parquet |
+| Silver | Cleaning, deduplication, derived fields, append-only durable audit trail | Parquet |
 | Gold   | Hourly aggregation, congestion classification, KPI computation           | Parquet + PostgreSQL |
 
 PostgreSQL is the **persistent system of record** for anything Superset needs to query. Silver Parquet acts as the durable audit trail; Gold Parquet is treated as an ephemeral computation buffer that feeds PostgreSQL.
 
-Raw JSONL files are **never deleted** — each Spark job filters to the latest `batch_ts` rather than removing older files, preserving a full audit trail for reproducibility and debugging.
+Raw JSONL files are **never deleted** - each Spark job filters to the latest ingested data rather than removing older files, preserving a full audit trail for reproducibility and debugging.
 
 ---
 
@@ -57,19 +57,43 @@ Incident pipeline additionally triggers:
 ## Architecture at a Glance
 
 ```
-TomTom Traffic API
-        |
-        v
-Airflow Ingestion DAGs (every 15 min)
-        |
-Raw JSONL --> Spark Bronze --> Spark Silver --> Spark Gold
-                                                     |
-                                                     v
-                                              PostgreSQL
-                                                /        \
-                                    Apache Superset   Email Alerts
-                                    (Dashboards)       (incidents)
-```
+                         TomTom Traffic APIs
+                                 |
+              +------------------+------------------+
+              |                                     |
+              v                                     v
+     Traffic Flow API                       Incident API
+ (speed, travel time, FRC)          (accidents, closures, events)
+              |                                     |
+              v                                     v
+    Airflow Traffic DAG                  Airflow Incident DAG
+    (every 15 minutes)                   (every ingestion cycle)
+              |                                     |
+              v                                     v
+      Raw Flow JSONL                      Raw Incident JSONL
+              |                                     |
+              v                                     v
+       Spark Bronze                       Spark Incident Bronze
+              |                                     |
+              v                                     v
+       Spark Silver                       Spark Incident Silver
+              |                                     |
+              v                                     v
+   Spark Gold (after 4 runs)          Spark Incident Gold
+              |                                     |
+              |                                     |
+              +------------------+------------------+
+                                 |
+                                 v
+                         PostgreSQL Warehouse
+                                 |
+                 +---------------+---------------+
+                 |                               |
+                 v                               v
+          Apache Superset                 Email Alerts
+          Dashboards                      Incident Notifications
+                                          
+                 
 
 ---
 
@@ -104,7 +128,7 @@ The project provides interactive dashboards for traffic analysis, incident monit
 
 ## Self-Healing Behavior
 
-- **Retries with backoff**: every task uses `DEFAULT_ARGS` (3 retries, exponential backoff, capped at 10 minutes).
+- **Retries with backoff**: every task uses `DEFAULT_ARGS` (3 retries, exponential backoff).
 - **Latest-batch filtering, not deletion**: every Spark job re-derives its working set from the max `batch_ts` in the source layer rather than assuming a clean input, so replays and backfills are safe.
 - **Per-point failure isolation**: `fetch_api_data` catches exceptions per grid point so a single failed TomTom request doesn't fail the whole city's ingestion — it's counted in `records_dropped` instead.
 - **Decoupled DAGs**: because ingestion, transformation, and aggregation are separate DAGs linked by `TriggerDagRunOperator`, a downstream Spark failure doesn't block the next 15-minute ingestion cycle.
@@ -115,7 +139,7 @@ The project provides interactive dashboards for traffic analysis, incident monit
 | RQ | Focus | Implemented via |
 |---|---|---|
 | RQ1 | Infrastructure reproducibility | `Dockerfile`, `docker-compose.yml`, Terraform (AWS EC2) |
-| RQ2 | Self-healing DAG behavior | Retry/backoff config, latest-batch filtering, decoupled trigger-based DAGs, `pipeline_logs`/`pipeline_metrics` |
+| RQ2 | Self-healing behavior | Retry/backoff config, latest-batch filtering, decoupled trigger-based Airflow DAGs, `pipeline_logs`/`pipeline_metrics` |
 | RQ3 | Multi-city schema standardization | `common/config.py` (`CITY_CONFIG`), shared PySpark schemas across Berlin/Bremen/Frankfurt in `bronze_job.py`/`incidents_bronze.py` |
 
 > 📖 For full architectural detail, schema documentation, setup instructions, terraform deployment and configuration references, see **[DETAILED_README.md](./DETAILED_README.md) and ****[Terraform Readme](./terraform/README.md)
