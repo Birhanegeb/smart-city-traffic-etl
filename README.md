@@ -2,11 +2,9 @@
 
 A self-healing micro-batch ETL pipeline that ingests live traffic flow and incident data for multiple German cities (Berlin, Bremen, Frankfurt) from the TomTom Traffic API, processes it through a Bronze → Silver → Gold layered architecture using Apache Spark, orchestrates everything with Apache Airflow, persists curated results in PostgreSQL, and visualizes them in Superset. Infrastructure is containerized with Docker Compose and deployable to AWS EC2 via Terraform.
 
-This repository is the implementation artifact for the master's thesis: "Self-Healing Micro-Batch ETL Pipeline for Smart City Traffic Data Using Airflow, PySpark, Docker, Terraform, PostgreSQL, and Superset."
+This repository is the implementation artifact for master's thesis: "Self-Healing Micro-Batch ETL Pipeline for Smart City Traffic Data Using Airflow, PySpark, Docker, Terraform, PostgreSQL, and Superset."
 
 ---
-
-## What It Does
 ## Architecture Overview
 
 The system is a **near-real-time / periodic micro-batch pipeline** (not true streaming), built around two independent data domains:
