@@ -43,7 +43,7 @@ TomTom API (Flow + Incidents)
    Silver (Spark, Parquet, cleaned + deduplicated + derived columns)
         │
         ▼
-   Gold (Spark, hourly aggregation, congestion levels)
+   Gold (Spark, 15 min/hourly aggregation, congestion levels)
         │
         ├──► PostgreSQL (traffic_kpis / traffic_points / traffic_incidents)
         │
