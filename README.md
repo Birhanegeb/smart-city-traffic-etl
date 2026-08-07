@@ -153,21 +153,18 @@ AIRFLOW__SMTP__SMTP_MAIL_FROM=your_gmail@gmail.com
 ```bash
 openssl rand -base64 42
 ```
-
-> ⚠️ Never commit a real `.env` file. Only `.env.example` (with placeholders) should be tracked in git.
-
 ---
 
 ## Getting a TomTom API Key
 
 The pipeline pulls traffic flow and incident data from the TomTom Traffic API, so you'll need a free API key before running anything.
 
-1. **Create an account** — go to [developer.tomtom.com](https://developer.tomtom.com) and sign up (or sign in) for the TomTom Developer Portal.
-2. **Create an app/project** — from your dashboard, click **My Apps** → **Add new app**, give it a name (e.g. `smart-city-traffic-etl`).
+1. **Create an account** - go to [developer.tomtom.com](https://developer.tomtom.com) and sign up (or sign in) for the TomTom Developer Portal.
+2. **Create an app/project** - from your dashboard, click **My Apps** → **Add new app**, give it a name (e.g. `smart-city-traffic-etl`).
 3. **Enable the required APIs** — for this project you need the **Traffic Flow API** and **Traffic Incidents API** enabled for the app.
 4. **Copy your API key** — TomTom generates a key automatically when the app is created; copy it from the app's detail page.
-5. **Check the free-tier quota** — the free plan gives a limited number of daily requests, which is enough for development but worth monitoring if you widen the grid sampling or add more cities.
-6. **Add the key to your environment** — paste it into `TOMTOM_API_KEY` in your `.env` file (see above).
+5. **Check the free-tier quota** - the free plan gives a limited number of daily requests, which is enough for development but worth monitoring if you widen the grid sampling or add more cities.
+6. **Add the key to your environment** - paste it into `TOMTOM_API_KEY` in your `.env` file (see above).
 
 ---
 
@@ -189,7 +186,7 @@ Airflow sends incident alert emails (accidents, road closures) through SMTP. The
    - `AIRFLOW__SMTP__SMTP_PASSWORD=<the 16-character App Password>`
    - `AIRFLOW__SMTP__SMTP_MAIL_FROM=<your Gmail address>`
 4. **Set the alert recipient** — unlike the sender, the recipient address is hardcoded in the DAG rather than read from `.env`. Open `dags/incident_alert_dag.py` and update the `ALERT_EMAIL` constant near the top of the file to the address that should receive incident alerts; it's passed as `to=ALERT_EMAIL` to the `EmailOperator` further down.
-5. **Verify delivery after starting the stack** — once the pipeline is running (see below), trigger the incident DAG manually from the Airflow UI (or wait for a real incident) and confirm the alert email arrives. If it fails, check the Airflow task logs for an SMTP auth error, which almost always means the App Password wasn't generated correctly or 2-Step Verification isn't enabled.
+5. **Verify delivery after starting the stack** - once the pipeline is running (see below), trigger the incident DAG manually from the Airflow UI (or wait for a real incident) and confirm the alert email arrives. If it fails, check the Airflow task logs for an SMTP auth error, which almost always means the App Password wasn't generated correctly or 2-Step Verification isn't enabled.
 
 > Using a provider other than Gmail? Swap `SMTP_HOST`/`SMTP_PORT` for your provider's values (e.g. Outlook: `smtp.office365.com:587`) and use that provider's regular or app-specific password.
 
@@ -197,7 +194,7 @@ Airflow sends incident alert emails (accidents, road closures) through SMTP. The
 
 ## Setup & Running Locally
 
-Once you've obtained your TomTom API key, configured SMTP, and filled in `.env` as described above, clone and start the full stack in one go — no restart needed afterward since every service picks up its config on first boot:
+Once you've obtained your TomTom API key, configured SMTP, clone and start the full stack in one go:
 
 ```bash
 git clone https://github.com/Birhanegeb/smart-city-traffic-etl.git
