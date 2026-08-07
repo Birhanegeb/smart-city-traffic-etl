@@ -10,8 +10,8 @@ This repository is the implementation artifact for the master's thesis: *"Self-H
 
 The system is a **near-real-time / periodic micro-batch pipeline** (not true streaming), built around two independent data domains:
 
-1. **Traffic flow data** — average speed per road segment, sampled on a grid across each city's bounding box.
-2. **Incident data** — accidents, road closures, congestion events, etc.
+1. **Traffic flow data** - average speed per road segment, sampled on a grid across each city's bounding box.
+2. **Incident data** - accidents, road closures, congestion events, etc.
 
 Both domains follow a **Bronze → Silver → Gold** medallion architecture:
 
@@ -24,7 +24,7 @@ Both domains follow a **Bronze → Silver → Gold** medallion architecture:
 
 PostgreSQL is the **persistent system of record** for anything Superset needs to query. Silver Parquet acts as the durable audit trail; Gold Parquet is treated as an ephemeral computation buffer that feeds PostgreSQL.
 
-Raw JSONL files are **never deleted** — each Spark job filters to the latest ingested data rather than removing older files, preserving a full audit trail for reproducibility and debugging.
+Raw JSONL files are **never deleted** - each Spark job filters to the latest ingested data rather than removing older files, preserving a full audit trail for reproducibility and debugging.
 
 ---
 
@@ -112,7 +112,7 @@ Apache Airflow · Apache Spark (PySpark) · PostgreSQL · Apache Superset · Doc
 
 ## Environment Variables (`.env.example`)
 
-Copy `.env.example` to `.env` and fill in real values — `.env` is git-ignored so your secrets stay local. The sections below walk through where to get the TomTom key and SMTP credentials that go here.
+Copy `.env.example` to `.env` and fill in real values - `.env` is git-ignored so your secrets stay local. The sections below walk through where to get the TomTom key and SMTP credentials that go here.
 
 ```bash
 # ── PostgreSQL ───────────────────────────────────────────────
