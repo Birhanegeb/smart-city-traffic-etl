@@ -217,7 +217,6 @@ Open the Airflow UI and trigger the DAGs manually:
 
 1. Trigger `tomtom_api_ingestion` to start the flow ingestion workflow.
 2. Trigger `tomtom_incidents_pipeline` to start incident ingestion and alert processing.
-3. Trigger `tomtom_spark_pipeline` or `tomtom_gold_dag` as needed for downstream Spark processing.
 
 ### Scheduled execution
 
@@ -229,9 +228,9 @@ The system writes observability data to PostgreSQL through the `pipeline_logs` a
 
 ---
 
-## Superset Dashboards
+## Superset Dashboards and Incident email alerts
 
-The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. Sample charts: [Sample Charts](https://github.com/Birhanegeb/smart-city-traffic-etl/blob/main/superset/sample_charts).
+The project provides interactive dashboards for traffic analysis, incident monitoring, and pipeline evaluation. See Sample charts: [Sample Charts](https://github.com/Birhanegeb/smart-city-traffic-etl/blob/main/superset/sample_charts), and [smple alerts](https://github.com/Birhanegeb/smart-city-traffic-etl/blob/main/superset/sample_incident_alert).
 
 ## Self-Healing Behavior
 
