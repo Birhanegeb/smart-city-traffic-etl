@@ -208,6 +208,24 @@ Then open:
 - Airflow UI → http://localhost:8080
 - Superset UI → http://localhost:8088
 - Spark UI → http://localhost:8081
+---
+## Running the Pipeline
+
+### Manual execution
+
+Open the Airflow UI and trigger the DAGs manually:
+
+1. Trigger `tomtom_api_ingestion` to start the flow ingestion workflow.
+2. Trigger `tomtom_incidents_pipeline` to start incident ingestion and alert processing.
+3. Trigger `tomtom_spark_pipeline` or `tomtom_gold_dag` as needed for downstream Spark processing.
+
+### Scheduled execution
+
+The ingestion DAGs are scheduled every 15 minutes. The Spark and alert DAGs are trigger-driven and are executed when upstream DAGs complete.
+
+### Monitoring
+
+The system writes observability data to PostgreSQL through the `pipeline_logs` and `pipeline_metrics` tables. These tables support runtime inspection of DAG execution, Spark task metrics, and processing status.
 
 ---
 
@@ -236,4 +254,4 @@ The project provides interactive dashboards for traffic analysis, incident monit
 
 ---
 
-*Author: Birhane — Master's Thesis, Data Engineering*
+*Author: Birhane - Master's Thesis, Data Engineering*

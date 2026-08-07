@@ -1,6 +1,6 @@
 # Terraform Deployment (`terraform/`)
 
-Provisions the AWS EC2 host that runs this pipeline. For architecture, DAGs, and pipeline internals, see the [root DETAILED_README.md](../DETAILED_README.md#terraform-infrastructure-deployment).
+Provisions the AWS EC2 host that runs this pipeline. For architecture, DAGs, and pipeline internals, see the [DETAILED_README.md](../DETAILED_README.md#terraform-infrastructure-deployment).
 
 ## Prerequisites
 
@@ -19,15 +19,13 @@ Provisions the AWS EC2 host that runs this pipeline. For architecture, DAGs, and
 cp terraform.tfvars.example terraform.tfvars
 ```
 
-Set at minimum:
+Set:
 
 ```hcl
 aws_region     = "eu-central-1"
 instance_type  = "t3.small"
 repo_url       = "https://github.com/Birhanegeb/smart-city-traffic-etl.git"
 ```
-
-Do not commit `terraform.tfvars` if it contains secrets.
 
 ## Deploy
 
@@ -57,14 +55,14 @@ chmod 400 ~/.ssh/smart-city-key
 ssh -i ~/.ssh/smart-city-key ubuntu@<EC2_PUBLIC_IP>
 
 cd ~/smart-city-traffic-etl
-docker ps   # airflow-webserver, airflow-scheduler, postgres, spark-master, spark-worker, superset — all "Up"
+docker ps   # check if airflow-webserver, airflow-scheduler, postgres, spark-master, spark-worker, superset — all "Up"
 ```
 
 Then open in a browser:
 - Airflow: `http://<EC2_PUBLIC_IP>:8080`
 - Superset: `http://<EC2_PUBLIC_IP>:8088`
 
-(Credentials come from `.env` — same `AIRFLOW_ADMIN_*` / `SUPERSET_ADMIN_*` variables used in local Docker Compose deployment.)
+(Credentials come from `.env` - same `AIRFLOW_ADMIN_*` / `SUPERSET_ADMIN_*` variables used in local Docker Compose deployment.)
 
 ## Troubleshooting
 
@@ -78,7 +76,6 @@ Then open in a browser:
 ## Tear Down
 
 ```bash
-terraform destroy
+terraform destroy #run this only to destroy the AWS EC2, if not required
 ```
-
 Removes the EC2 instance, security group, and AWS key pair.
