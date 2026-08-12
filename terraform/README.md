@@ -1,81 +1,193 @@
-# Terraform Deployment (`terraform/`)
+## Terraform Infrastructure Deployment
 
-Provisions the AWS EC2 host that runs this pipeline. For architecture, DAGs, and pipeline internals, see the [DETAILED_README.md](../DETAILED_README.md#terraform-infrastructure-deployment).
+This contains the Terraform configuration for deploying the Smart City Traffic ETL pipeline to an AWS EC2 instance.
 
-## Prerequisites
+### What the Deployment Does
 
-- Terraform >= 1.5 (`terraform version`)
-- AWS CLI, configured with `aws configure` (needs Access Key ID, Secret Access Key, and a default region, e.g. `eu-central-1`)
-- An existing local SSH key pair: you can change this keys according your requirement
-  ```
-  ~/.ssh/smart-city-key
-  ~/.ssh/smart-city-key.pub
-  ```
-  Only the public key is uploaded to AWS (via `aws_key_pair`); the private key never leaves your machine.
+Running Terraform automatically:
 
-## Configure Variables
+1. Creates an AWS EC2 instance in the Frankfurt region (`eu-central-1`).
+2. Uses the latest Ubuntu 24.04 AMI.
+3. Creates and attaches the configured SSH key pair.
+4. Configures the required security group.
+5. Creates a 20 GB GP3 root volume.
+6. Runs `scripts/user_data.sh` during EC2 initialization.
+7. Installs Docker Engine and Docker Compose.
+8. Clones the ETL project from GitHub.
+9. Starts the Docker Compose environment.
 
-```bash
-cp terraform.tfvars.example terraform.tfvars
+The `.env` file is **not included in the repository** because it contains passwords, API keys, and other sensitive configuration. It must therefore be configured after the EC2 instance is created.
+
+### EC2 Instance Configuration
+
+The default EC2 instance type is t3.small:
+
+instance_type = "t3.small"
+
+The instance type can be changed according to the computational requirements of the pipeline. The t3.small instance is suitable for deployment verification and checking the Airflow orchestration layer, but its limited CPU and memory resources may not be sufficient to execute the complete ETL pipeline.
+
+For full pipeline execution, a larger EC2 instance is recommended.
+
+The instance type can be changed in terraform/variables.tf:
+
+variable "instance_type" {
+  description = "EC2 instance size"
+  default     = "t3.small"
+}
+
+Alternatively, it can be overridden during deployment:
+
+terraform apply -var="instance_type=t3.medium"
+
+For example:
+
+t3.small   → Suitable for deployment verification
+t3.medium  → More suitable for running the complete pipeline
+t3.large   → Recommended when additional memory and processing capacity are required
+
+The appropriate instance type depends on the workload and AWS pricing. Larger instances may incur additional AWS costs.
+### Project Structure
+
+The `scripts` directory is located one level above the Terraform directory:
+
+```text
+smart-city-traffic-etl/
+├── terraform/
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
+├── scripts/
+│   └── user_data.sh
+├── docker-compose.yml
+├── dags/
+├── spark/
+└── ...
 ```
 
-Set:
+The Terraform configuration references the initialization script using:
 
 ```hcl
-aws_region     = "eu-central-1"
-instance_type  = "t3.small"
-repo_url       = "https://github.com/Birhanegeb/smart-city-traffic-etl.git"
+user_data = file("../scripts/user_data.sh")
 ```
 
-## Deploy
+### Deployment Steps
+
+#### 1. Configure AWS Credentials
+
+Configure the AWS CLI on the local machine:
 
 ```bash
-terraform init      # download AWS provider plugins
-terraform fmt        # format files
-terraform validate   # sanity-check config
-terraform plan       # preview: aws_key_pair, aws_security_group, aws_instance
-terraform apply      # confirm with "yes" to create the EC2 instance
+aws configure
 ```
 
-`scripts/user_data.sh` runs automatically on first boot and handles: system update, Docker + Docker Compose + Git install, repository clone, `.env` setup, and `docker compose up -d`.
+The deployment uses the Frankfurt region:
 
-## After Apply
-
-Terraform prints the instance's public IP/DNS:
-
-```
-ec2_public_ip  = "63.178.240.111"
-ec2_public_dns = "ec2-63-178-240-111.eu-central-1.compute.amazonaws.com"
+```text
+eu-central-1
 ```
 
-Connect and verify:
+#### 2. Navigate to the Terraform Directory
 
 ```bash
-chmod 400 ~/.ssh/smart-city-key
+cd terraform
+```
+
+#### 3. Initialize Terraform
+
+```bash
+terraform init
+```
+
+#### 4. Review the Deployment Plan
+
+```bash
+terraform plan
+```
+
+#### 5. Create the AWS Infrastructure
+
+```bash
+terraform apply
+```
+
+Enter `yes` when prompted.
+
+After successful deployment, Terraform displays the EC2 public IP and DNS name.
+
+#### 6. Connect to the EC2 Instance
+
+```bash
 ssh -i ~/.ssh/smart-city-key ubuntu@<EC2_PUBLIC_IP>
-
-cd ~/smart-city-traffic-etl
-docker ps   # check if airflow-webserver, airflow-scheduler, postgres, spark-master, spark-worker, superset — all "Up"
 ```
 
-Then open in a browser:
-- Airflow: `http://<EC2_PUBLIC_IP>:8080`
-- Superset: `http://<EC2_PUBLIC_IP>:8088`
+During instance initialization, `user_data.sh` automatically installs Docker and Docker Compose, clones the repository, and starts the Docker Compose environment.
 
-(Credentials come from `.env` - same `AIRFLOW_ADMIN_*` / `SUPERSET_ADMIN_*` variables used in local Docker Compose deployment.)
+#### 7. Configure the `.env` File
 
-## Troubleshooting
+The `.env` file must be copied from the local machine because it contains sensitive credentials and API keys.
 
-| Issue | Fix |
-| --- | --- |
-| `Permissions 0644 for key are too open` | `chmod 400 ~/.ssh/smart-city-key` |
-| Lost track of IP/DNS | `terraform output` |
-| Container issue on EC2 | `docker compose logs` or `docker logs <container>` |
-| Services misbehaving | `docker compose restart` |
-
-## Tear Down
+From the local machine:
 
 ```bash
-terraform destroy #run this only to destroy the AWS EC2, if not required
+scp -i ~/.ssh/smart-city-key .env ubuntu@<EC2_PUBLIC_IP>:~/smart-city-traffic-etl/.env
 ```
-Removes the EC2 instance, security group, and AWS key pair.
+
+Then connect to the EC2 instance:
+
+```bash
+ssh -i ~/.ssh/smart-city-key ubuntu@<EC2_PUBLIC_IP>
+```
+
+Navigate to the project:
+
+```bash
+cd ~/smart-city-traffic-etl
+```
+
+Verify the file:
+
+```bash
+ls -lh .env
+```
+
+#### 8. Restart the Docker Environment
+
+Since the initial Docker Compose startup occurs before the `.env` file is copied, restart the services after configuring the environment:
+
+```bash
+docker compose down
+docker compose up -d
+```
+
+Check the services:
+
+```bash
+docker compose ps
+```
+
+#### 9. Access Airflow
+
+Open the Airflow web interface using the EC2 public IP:
+
+```text
+http://<EC2_PUBLIC_IP>:8080
+```
+
+The Airflow interface should display the five configured ETL DAGs.
+
+#### 10. Destroy the Deployment
+
+When the cloud deployment is no longer required:
+
+```bash
+terraform destroy
+```
+
+Confirm with:
+
+```text
+yes
+```
+
+This removes the Terraform-managed AWS resources.
+
