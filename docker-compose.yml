@@ -74,6 +74,7 @@ services:
       - ./data:/opt/data
       - ./spark:/opt/spark-apps
       - ./drivers:/opt/spark/drivers
+      - ./tests:/opt/airflow/tests
     entrypoint: >
       bash -c "
       airflow db check &&

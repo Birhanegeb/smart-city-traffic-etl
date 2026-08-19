@@ -17,4 +17,5 @@ USER airflow
 RUN pip install --no-cache-dir \
     apache-airflow-providers-apache-spark==4.0.1 \
     pyspark \
-    psycopg2-binary
+    psycopg2-binary \
+    pytest
