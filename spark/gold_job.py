@@ -178,4 +178,9 @@ for row in gold.select("city").distinct().collect():
         status="success"
     )
 
+print(
+    f"stage=gold records_read={records_read} "
+    f"records_written={records_written} records_dropped={records_dropped} "
+    f"elapsed_seconds={spark_time}"
+)
 spark.stop()

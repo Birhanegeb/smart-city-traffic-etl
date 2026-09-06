@@ -36,6 +36,7 @@ def write_metrics(dag_id, task_id, batch_id, city, records_read,
 spark = (
     SparkSession.builder
     .appName("bronze_job")
+    .config("spark.sql.sources.partitionOverwriteMode", "dynamic")
     .getOrCreate()
 )
 
@@ -76,9 +77,9 @@ records_dropped = records_read - records_written
 
 (
     bronze_df.write
-      .mode("append")
-      .partitionBy("city", "date")
-      .parquet(BRONZE_PATH)
+    .mode("overwrite")
+    .partitionBy("city", "date")
+    .parquet(BRONZE_PATH)
 )
 
 spark_time = round(time.time() - start_time, 2)
@@ -99,5 +100,10 @@ for row in bronze_df.select("city").distinct().collect():
         status="success"
     )
 
+print(
+    f"stage=bronze records_read={records_read} "
+    f"records_written={records_written} records_dropped={records_dropped} "
+    f"elapsed_seconds={spark_time}"
+)
 print(f"Bronze layer written to {BRONZE_PATH}")
 spark.stop()

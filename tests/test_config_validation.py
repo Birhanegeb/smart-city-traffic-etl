@@ -2,7 +2,7 @@ import os
 
 os.environ.setdefault("TOMTOM_API_KEY", "test-key")
 
-from dags.common.config import CITY_CONFIG, validate_city_config
+from dags.common.config import CITY_CONFIG, DEFAULT_ARGS, validate_city_config
 
 
 def test_city_config_contains_expected_cities():
@@ -27,3 +27,9 @@ def test_validate_city_config_rejects_invalid_input():
         assert False, "Expected ValueError for malformed city config"
     except ValueError:
         pass
+
+
+def test_default_args_enable_retry_with_backoff():
+    assert DEFAULT_ARGS["retries"] == 3
+    assert DEFAULT_ARGS["retry_exponential_backoff"] is True
+    assert DEFAULT_ARGS["max_retry_delay"].total_seconds() == 600

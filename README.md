@@ -208,6 +208,47 @@ Then open:
 - Airflow UI → http://localhost:8080
 - Superset UI → http://localhost:8088
 - Spark UI → http://localhost:8081
+
+## Testing and Benchmarking
+
+The test suite runs inside the Airflow container, which includes the same Python
+dependencies used by the pipeline:
+
+```bash
+docker compose exec airflow-webserver pytest -q /opt/airflow/tests
+```
+
+The suite covers configuration validation, multi-city grid integration, and
+deterministic performance measurements. To print benchmark measurements for
+increasing grid sizes, run:
+
+```bash
+docker compose exec airflow-webserver pytest -q -s /opt/airflow/tests/test_benchmark_smoke.py
+```
+
+The benchmark reports elapsed seconds and points per second for 5x5, 10x10,
+and 20x20 grids. These measurements provide a repeatable baseline for the
+scalability analysis; benchmark results should be recorded with the machine
+specification and Docker configuration used for the thesis.
+
+The medallion integration test and the Spark data-volume benchmark can be run
+with:
+
+```bash
+docker compose exec airflow-webserver pytest -q -s \
+        /opt/airflow/tests/test_spark_pipeline_integration.py \
+        /opt/airflow/tests/test_spark_scalability.py
+```
+
+The Spark jobs also print stage-level measurements in this format:
+
+```text
+stage=silver records_read=... records_written=... records_dropped=... elapsed_seconds=...
+```
+
+Record one result for each stage and dataset size, then compare records per
+second across cities and input volumes. This provides the processing-time and
+scalability evidence for the thesis rather than relying on assertions alone.
 ---
 ## Running the Pipeline
 

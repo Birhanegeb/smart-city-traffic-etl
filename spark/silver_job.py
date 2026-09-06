@@ -5,6 +5,7 @@ from datetime import datetime
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import (
     col,
+    max as spark_max,
     sha2,
     concat_ws,
     current_timestamp,
@@ -120,6 +121,9 @@ start_time = time.time()
 # ============================================================
 
 df = spark.read.parquet(bronze_path)
+
+latest_batch = df.agg(spark_max("batch_ts")).collect()[0][0]
+df = df.filter(col("batch_ts") == latest_batch)
 
 records_read = df.count()
 
@@ -289,4 +293,9 @@ for row in (
         status="success"
     )
 
+print(
+    f"stage=silver records_read={records_read} "
+    f"records_written={records_written} records_dropped={records_dropped} "
+    f"elapsed_seconds={spark_time}"
+)
 spark.stop()
