@@ -1,7 +1,6 @@
 # Testing and Benchmarking Record
 
-This document records the testing, integration validation, performance benchmarking, and scalability evaluation performed for the Smart City Traffic ETL Pipeline.
-
+This document records the testing, integration validation, performance benchmarking, and scalability evaluation performed for the
 The evaluation provides empirical evidence for the pipeline's reliability, failure isolation, reproducibility, multi-city processing, and baseline scalability.
 
 ---
@@ -479,7 +478,7 @@ The Spark scalability experiments used datasets of 100, 1,000, and 5,000 records
 
 Similarly, the recorded Bronze, Silver, and Gold execution times represent individual executions in the available Docker/Spark environment and should not be interpreted as statistically generalized performance estimates.
 
-A larger-scale experiment with substantially larger datasets, repeated trials, controlled resource allocation, and multiple worker configurations would provide stronger evidence for production-scale scalability. Such an experiment was outside my available computing-resource constraints of the project.
+A larger-scale experiment with substantially larger datasets, repeated trials, controlled resource allocation, and multiple worker configurations would provide stronger evidence for production-scale scalability. Such an experiment was outside my available computing-resource constraints.
 
 ---
 

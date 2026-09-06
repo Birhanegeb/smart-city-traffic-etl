@@ -210,7 +210,7 @@ Then open:
 - Spark UI → http://localhost:8081
 
 ## Testing and Benchmarking
-refer to https://github.com/Birhanegeb/smart-city-traffic-etl/blob/main/tests/README.md
+[Testing and Benchmarking](tests/README.md)
 ---
 ## Running the Pipeline
 
