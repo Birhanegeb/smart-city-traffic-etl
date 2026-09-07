@@ -1,4 +1,4 @@
-# Testing and Benchmarking Record
+# Testing and Benchmarking
 
 This document records the testing, integration validation, performance benchmarking, and scalability evaluation performed for the
 The evaluation provides empirical evidence for the pipeline's reliability, failure isolation, reproducibility, multi-city processing, and baseline scalability.
@@ -380,7 +380,7 @@ The actual execution produced:
 | ------ | -----------: | --------------: | --------------: | -------------: |
 | Bronze |           66 |              66 |               0 |         5.55 s |
 | Silver |           66 |              66 |               0 |         5.87 s |
-| Gold   |        7,854 |              66 |           7,788 |         7.92 s |
+| Gold   |        7,854 |           7,786 |               68|         7.92 s |
 
 The Bronze and Silver stages operate on the current micro-batch, while Gold reads accumulated Silver data and applies the latest-hour filter.
 
@@ -513,4 +513,4 @@ The testing and benchmarking recommendation provided an opportunity to evaluate 
 
 As a result of this evaluation, Bronze was corrected to use idempotent writes, Silver was updated to process only the latest batch, and automated tests were introduced to verify these behaviors.
 
-The resulting testing and benchmarking framework provides a stronger empirical foundation for the technical claims made before..
+The resulting testing and benchmarking framework provides a stronger empirical foundation for the technical claims made before.
