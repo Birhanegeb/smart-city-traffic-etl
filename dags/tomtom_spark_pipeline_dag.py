@@ -4,7 +4,6 @@ from common.config import DEFAULT_ARGS
 from datetime import datetime
 from airflow.models import Variable
 from airflow.operators.python import BranchPythonOperator
-from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 

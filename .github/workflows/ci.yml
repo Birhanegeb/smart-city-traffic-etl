@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Python lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Ruff
+        run: python -m pip install ruff
+      - name: Run Ruff
+        run: ruff check --isolated --select F dags spark tests
+
+  tests-and-dags:
+    name: Tests and Airflow DAG imports
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project test image
+        run: docker build --tag smart-city-traffic-etl-ci .
+      - name: Run tests and check DAG imports
+        run: |
+          docker run --rm \
+            --tmpfs /opt/data:rw,uid=50000,gid=0 \
+            -e TOMTOM_API_KEY=ci-test-key \
+            -e AIRFLOW__CORE__LOAD_EXAMPLES=False \
+            -e AIRFLOW_HOME=/tmp/airflow \
+            -v "${{ github.workspace }}:/opt/airflow" \
+            smart-city-traffic-etl-ci \
+            bash -euo pipefail -c '
+              python -m pip install -r requirements-test.txt
+              pytest -q -p no:cacheprovider tests
+              airflow db migrate
+              airflow dags list-import-errors --output=json |
+                python -c "import json, sys; errors = json.load(sys.stdin); print(json.dumps(errors, indent=2)); sys.exit(bool(errors))"
+            '
+
+  terraform:
+    name: Terraform validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.5
+      - name: Check Terraform formatting
+        run: terraform fmt -check -recursive
+      - name: Initialize Terraform providers
+        working-directory: terraform
+        run: terraform init -backend=false -input=false
+      - name: Validate Terraform configuration
+        working-directory: terraform
+        run: terraform validate
