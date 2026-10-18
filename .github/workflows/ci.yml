@@ -58,6 +58,10 @@ jobs:
       - name: Initialize Terraform providers
         working-directory: terraform
         run: terraform init -backend=false -input=false
+      - name: Generate temporary SSH key for validation
+        run: |
+          mkdir -p "$HOME/.ssh"
+          ssh-keygen -q -t ed25519 -N "" -f "$HOME/.ssh/smart-city-key"
       - name: Validate Terraform configuration
         working-directory: terraform
         run: terraform validate

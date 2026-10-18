@@ -22,7 +22,7 @@ resource "aws_key_pair" "traffic_key" {
 
   key_name = "smart-city-traffic-key"
 
-  public_key = file("~/.ssh/smart-city-key.pub")
+  public_key = file(var.public_key_path)
 }
 
 
